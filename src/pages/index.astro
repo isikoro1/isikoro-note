@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const entries = Object.entries(import.meta.glob('../content/knowledge/**/*.md', { eager: true }));
+
+const notes = entries
+  .map(([path, mod]: [string, any]) => {
+    const slug = path.replace('../content/knowledge/', '').replace(/\.md$/, '');
+    return {
+      slug,
+      ...mod.frontmatter,
+    };
+  })
+  .sort((a: any, b: any) => String(b.updated ?? '').localeCompare(String(a.updated ?? '')))
+  .slice(0, 6);
+---
+<BaseLayout title="isikorog note">
+  <section class="hero">
+    <h1>知識を、記事ではなく地図として育てる。</h1>
+    <p>
+      isikorog note は、技術・開発・ゲーム・仕事の知識を用語単位で整理する個人ナレッジベースです。
+      時系列で読むブログではなく、検索・分類・関連リンクであとから引ける場所を目指します。
+    </p>
+    <input class="search-box" id="search" type="search" placeholder="JWT、Struts、N+1、詳細設計などで検索" />
+    <div id="results" class="grid" aria-live="polite"></div>
+  </section>
+
+  <section>
+    <h2>Recently updated</h2>
+    <div class="grid">
+      {notes.map((note: any) => (
+        <a class="card" href={`${base}knowledge/${note.slug}/`}>
+          <h3>{note.title}</h3>
+          <p>{note.summary}</p>
+          <div class="badges">
+            <span class="badge">{note.category}</span>
+            <span class="badge">{note.type}</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <script>
+    const base = import.meta.env.BASE_URL;
+    const input = document.querySelector('#search');
+    const results = document.querySelector('#results');
+    let docs = [];
+
+    const normalize = (value) => String(value ?? '').toLowerCase();
+
+    fetch(`${base}search.json`)
+      .then((res) => res.json())
+      .then((data) => {
+        docs = data;
+      });
+
+    input?.addEventListener('input', () => {
+      const query = normalize(input.value).trim();
+      if (!query) {
+        results.innerHTML = '';
+        return;
+      }
+
+      const matched = docs
+        .filter((doc) => normalize([
+          doc.title,
+          doc.summary,
+          doc.category,
+          doc.type,
+          ...(doc.tags ?? []),
+          ...(doc.aliases ?? []),
+          doc.body,
+        ].join(' ')).includes(query))
+        .slice(0, 8);
+
+      results.innerHTML = matched.length
+        ? matched.map((doc) => `
+            <a class="card" href="${base}knowledge/${doc.slug}/">
+              <h3>${doc.title}</h3>
+              <p>${doc.summary ?? ''}</p>
+              <div class="badges">
+                <span class="badge">${doc.category ?? ''}</span>
+                <span class="badge">${doc.type ?? ''}</span>
+              </div>
+            </a>
+          `).join('')
+        : '<p class="empty">まだ該当するページがありません。</p>';
+    });
+  </script>
+</BaseLayout>
