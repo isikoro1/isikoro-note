@@ -17,17 +17,14 @@ const notes = entries
 ---
 <BaseLayout title="isikorog note">
   <section class="hero">
-    <h1>知識を、記事ではなく地図として育てる。</h1>
-    <p>
-      isikorog note は、技術・開発・ゲーム・仕事の知識を用語単位で整理する個人ナレッジベースです。
-      時系列で読むブログではなく、検索・分類・関連リンクであとから引ける場所を目指します。
-    </p>
-    <input class="search-box" id="search" type="search" placeholder="JWT、Struts、N+1、詳細設計などで検索" />
+    <h1>isikorog note</h1>
+    <p>技術、業務知識、個人開発、ゲームなどのメモを検索できるように整理しています。</p>
+    <input class="search-box" id="search" type="search" placeholder="Java、EJB、Struts、金融、オーソリなどで検索" />
     <div id="results" class="grid" aria-live="polite"></div>
   </section>
 
   <section>
-    <h2>Recently updated</h2>
+    <h2>最近更新したページ</h2>
     <div class="grid">
       {notes.map((note: any) => (
         <a class="card" href={`${base}knowledge/${note.slug}/`}>
