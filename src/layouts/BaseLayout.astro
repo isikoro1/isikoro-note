@@ -18,30 +18,16 @@ const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
     <title>{title}</title>
   </head>
   <body>
-    <div class="site-shell">
-      <aside class="sidebar">
-        <a class="logo" href={url()}>石ころノート</a>
-
-        <nav class="nav-section" aria-label="Main navigation">
-          <h2>Navigate</h2>
-          <a href={url('knowledge/')}>Knowledge</a>
-          <a href={url('knowledge/?type=term')}>Terms</a>
-          <a href={url('knowledge/?type=guide')}>Guides</a>
-          <a href={url('knowledge/?type=memo')}>Memos</a>
-        </nav>
-
-        <nav class="nav-section" aria-label="Categories">
-          <h2>Categories</h2>
-          <a href={url('knowledge/?category=Tech')}>Tech</a>
-          <a href={url('knowledge/?category=Work')}>Work</a>
-          <a href={url('knowledge/?category=Game')}>Game</a>
-          <a href={url('knowledge/?category=Tools')}>Tools</a>
-          <a href={url('knowledge/?category=Thinking')}>Thinking</a>
-        </nav>
-      </aside>
-      <main>
-        <slot />
-      </main>
-    </div>
+    <header class="site-header">
+      <a class="logo" href={url()}>石ころノート</a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href={url('knowledge/')}>一覧</a>
+        <a href={url('knowledge/?category=Tech')}>技術</a>
+        <a href={url('knowledge/?category=Work')}>業務</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
   </body>
 </html>
