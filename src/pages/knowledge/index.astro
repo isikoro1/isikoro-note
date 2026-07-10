@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL;
+const { searchParams } = Astro.url;
+const selectedCategory = searchParams.get('category');
+const selectedType = searchParams.get('type');
+
+const entries = Object.entries(import.meta.glob('../../content/knowledge/**/*.md', { eager: true }));
+const notes = entries
+  .map(([path, mod]: [string, any]) => {
+    const slug = path.replace('../../content/knowledge/', '').replace(/\.md$/, '');
+    return { slug, ...mod.frontmatter };
+  })
+  .filter((note: any) => !selectedCategory || note.category === selectedCategory)
+  .filter((note: any) => !selectedType || note.type === selectedType)
+  .sort((a: any, b: any) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
+
+const title = selectedCategory
+  ? `${selectedCategory} - Knowledge`
+  : selectedType
+    ? `${selectedType} - Knowledge`
+    : 'Knowledge';
+---
+<BaseLayout title={`${title} | isikorog note`}>
+  <section class="hero">
+    <h1>{title}</h1>
+    <p>用語、比較、ガイド、メモを一覧できます。検索はトップページから使えます。</p>
+  </section>
+
+  <div class="grid">
+    {notes.map((note: any) => (
+      <a class="card" href={`${base}knowledge/${note.slug}/`}>
+        <h2>{note.title}</h2>
+        <p>{note.summary}</p>
+        <div class="badges">
+          <span class="badge">{note.category}</span>
+          <span class="badge">{note.type}</span>
+          {note.status && <span class="badge">{note.status}</span>}
+        </div>
+      </a>
+    ))}
+  </div>
+</BaseLayout>
