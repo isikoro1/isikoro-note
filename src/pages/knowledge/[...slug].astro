@@ -2,17 +2,22 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL;
-const pages = import.meta.glob('../../content/knowledge/**/*.md');
 
 export async function getStaticPaths() {
-  return Object.keys(pages).map((path) => {
+  const modules = import.meta.glob('../../content/knowledge/**/*.md');
+
+  return Object.keys(modules).map((path) => {
     const slug = path.replace('../../content/knowledge/', '').replace(/\.md$/, '');
-    return { params: { slug } };
+    return {
+      params: { slug },
+      props: { path },
+    };
   });
 }
 
-const slug = Astro.params.slug;
-const loader = pages[`../../content/knowledge/${slug}.md`];
+const { path } = Astro.props;
+const modules = import.meta.glob('../../content/knowledge/**/*.md');
+const loader = modules[path];
 const page: any = await loader();
 const { Content, frontmatter } = page;
 ---
