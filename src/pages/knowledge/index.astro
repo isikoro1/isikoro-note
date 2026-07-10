@@ -18,27 +18,21 @@ const notes = entries
   .sort((a: any, b: any) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
 
 const title = selectedCategory
-  ? `${selectedCategory} - Knowledge`
+  ? selectedCategory
   : selectedType
-    ? `${selectedType} - Knowledge`
-    : 'Knowledge';
+    ? selectedType
+    : '一覧';
 ---
 <BaseLayout title={`${title} | 石ころノート`}>
-  <section class="hero">
+  <section class="index-section">
     <h1>{title}</h1>
+    <ul class="link-index">
+      {notes.map((note: any) => (
+        <li>
+          <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
+          {note.summary && <span>{note.summary}</span>}
+        </li>
+      ))}
+    </ul>
   </section>
-
-  <div class="grid">
-    {notes.map((note: any) => (
-      <a class="card" href={url(`knowledge/${note.slug}/`)}>
-        <h2>{note.title}</h2>
-        <p>{note.summary}</p>
-        <div class="badges">
-          <span class="badge">{note.category}</span>
-          <span class="badge">{note.type}</span>
-          {note.status && <span class="badge">{note.status}</span>}
-        </div>
-      </a>
-    ))}
-  </div>
 </BaseLayout>
