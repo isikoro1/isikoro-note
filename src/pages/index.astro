@@ -15,10 +15,9 @@ const notes = entries
   .sort((a: any, b: any) => String(b.updated ?? '').localeCompare(String(a.updated ?? '')))
   .slice(0, 6);
 ---
-<BaseLayout title="isikorog note">
+<BaseLayout title="石ころノート">
   <section class="hero">
-    <h1>isikorog note</h1>
-    <p>技術、業務知識、個人開発、ゲームなどのメモを検索できるように整理しています。</p>
+    <h1>石ころノート</h1>
     <input class="search-box" id="search" type="search" placeholder="Java、EJB、Struts、金融、オーソリなどで検索" />
     <div id="results" class="grid" aria-live="polite"></div>
   </section>
