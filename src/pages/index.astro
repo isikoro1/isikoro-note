@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
 const entries = Object.entries(import.meta.glob('../content/knowledge/**/*.md', { eager: true }));
 
 const notes = entries
@@ -26,7 +27,7 @@ const notes = entries
     <h2>最近更新したページ</h2>
     <div class="grid">
       {notes.map((note: any) => (
-        <a class="card" href={`${base}knowledge/${note.slug}/`}>
+        <a class="card" href={url(`knowledge/${note.slug}/`)}>
           <h3>{note.title}</h3>
           <p>{note.summary}</p>
           <div class="badges">
@@ -38,15 +39,16 @@ const notes = entries
     </div>
   </section>
 
-  <script>
-    const base = import.meta.env.BASE_URL;
+  <script define:vars={{ base }}>
+    const searchBase = `${base}/`.replace(/\/+/g, '/');
     const input = document.querySelector('#search');
     const results = document.querySelector('#results');
     let docs = [];
 
     const normalize = (value) => String(value ?? '').toLowerCase();
+    const makeUrl = (path) => `${searchBase}${path}`.replace(/\/+/g, '/');
 
-    fetch(`${base}search.json`)
+    fetch(makeUrl('search.json'))
       .then((res) => res.json())
       .then((data) => {
         docs = data;
@@ -73,7 +75,7 @@ const notes = entries
 
       results.innerHTML = matched.length
         ? matched.map((doc) => `
-            <a class="card" href="${base}knowledge/${doc.slug}/">
+            <a class="card" href="${makeUrl(`knowledge/${doc.slug}/`)}">
               <h3>${doc.title}</h3>
               <p>${doc.summary ?? ''}</p>
               <div class="badges">
