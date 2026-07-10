@@ -9,6 +9,7 @@
 - 完成度より、まずページを作ることを優先する
 - `status: stub` や `status: draft` を許容する
 - 用語ページから関連ページへ飛べるようにする
+- 文章だけでなく、カード・注意枠・フロー図で見やすく整理する
 
 ## 技術スタック
 
@@ -59,6 +60,43 @@ related:
 ## 何に使う？
 
 ## 自分用メモ
+```
+
+## 図形ブロック
+
+Markdown内にHTMLを書くと、Excelの図形挿入に近い見た目のブロックを使えます。
+使い方は `src/content/knowledge/tools/visual-blocks.md` を参照します。
+
+### 注意枠
+
+```html
+<div class="shape-warning">
+  <h3>注意</h3>
+  <p>ここに注意点を書く。</p>
+</div>
+```
+
+### フロー図
+
+```html
+<div class="flow">
+  <div class="flow-node">Start</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-node">Process</div>
+  <div class="flow-arrow">→</div>
+  <div class="flow-node">End</div>
+</div>
+```
+
+### カード一覧
+
+```html
+<div class="shape-grid">
+  <div class="shape-card">
+    <h3>項目</h3>
+    <p>説明を書く。</p>
+  </div>
+</div>
 ```
 
 ## ページ種別
