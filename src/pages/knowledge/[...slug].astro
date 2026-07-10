@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
 
 export async function getStaticPaths() {
   const modules = import.meta.glob('../../content/knowledge/**/*.md');
@@ -21,7 +22,7 @@ const loader = modules[path];
 const page: any = await loader();
 const { Content, frontmatter } = page;
 ---
-<BaseLayout title={`${frontmatter.title} | isikorog note`} description={frontmatter.summary}>
+<BaseLayout title={`${frontmatter.title} | 石ころノート`} description={frontmatter.summary}>
   <article class="article">
     <p class="meta">
       {frontmatter.category} / {frontmatter.type} / {frontmatter.status} / Updated: {frontmatter.updated}
@@ -42,7 +43,7 @@ const { Content, frontmatter } = page;
         <h2>関連ページ</h2>
         <ul class="related-list">
           {frontmatter.related.map((item: any) => (
-            <li><a href={`${base}knowledge/${item.slug}/`}>{item.title}</a></li>
+            <li><a href={url(`knowledge/${item.slug}/`)}>{item.title}</a></li>
           ))}
         </ul>
       </section>
