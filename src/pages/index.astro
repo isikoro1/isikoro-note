@@ -13,30 +13,36 @@ const notes = entries
       ...mod.frontmatter,
     };
   })
-  .sort((a: any, b: any) => String(b.updated ?? '').localeCompare(String(a.updated ?? '')))
-  .slice(0, 6);
+  .sort((a: any, b: any) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
+
+const groups = ['Tech', 'Work', 'Tools', 'Thinking', 'Game']
+  .map((category) => ({
+    category,
+    notes: notes.filter((note: any) => note.category === category),
+  }))
+  .filter((group) => group.notes.length > 0);
 ---
 <BaseLayout title="石ころノート">
-  <section class="hero">
+  <section class="hero compact-hero">
     <h1>石ころノート</h1>
     <input class="search-box" id="search" type="search" placeholder="Java、EJB、Struts、金融、オーソリなどで検索" />
-    <div id="results" class="grid" aria-live="polite"></div>
+    <div id="results" class="link-index search-results" aria-live="polite"></div>
   </section>
 
-  <section>
-    <h2>最近更新したページ</h2>
-    <div class="grid">
-      {notes.map((note: any) => (
-        <a class="card" href={url(`knowledge/${note.slug}/`)}>
-          <h3>{note.title}</h3>
-          <p>{note.summary}</p>
-          <div class="badges">
-            <span class="badge">{note.category}</span>
-            <span class="badge">{note.type}</span>
-          </div>
-        </a>
-      ))}
-    </div>
+  <section class="index-sections">
+    {groups.map((group) => (
+      <section class="index-section">
+        <h2>{group.category}</h2>
+        <ul class="link-index">
+          {group.notes.map((note: any) => (
+            <li>
+              <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
+              {note.summary && <span>{note.summary}</span>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </section>
 
   <script define:vars={{ base }}>
@@ -71,19 +77,15 @@ const notes = entries
           ...(doc.aliases ?? []),
           doc.body,
         ].join(' ')).includes(query))
-        .slice(0, 8);
+        .slice(0, 20);
 
       results.innerHTML = matched.length
-        ? matched.map((doc) => `
-            <a class="card" href="${makeUrl(`knowledge/${doc.slug}/`)}">
-              <h3>${doc.title}</h3>
-              <p>${doc.summary ?? ''}</p>
-              <div class="badges">
-                <span class="badge">${doc.category ?? ''}</span>
-                <span class="badge">${doc.type ?? ''}</span>
-              </div>
-            </a>
-          `).join('')
+        ? `<ul>${matched.map((doc) => `
+            <li>
+              <a href="${makeUrl(`knowledge/${doc.slug}/`)}">${doc.title}</a>
+              <span>${doc.summary ?? ''}</span>
+            </li>
+          `).join('')}</ul>`
         : '<p class="empty">まだ該当するページがありません。</p>';
     });
   </script>
