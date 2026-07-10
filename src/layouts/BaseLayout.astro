@@ -2,11 +2,12 @@
 import '../styles/global.css';
 
 const {
-  title = 'isikorog note',
-  description = '技術・開発・ゲーム・仕事の知識を検索しやすく整理する個人ナレッジベース。',
+  title = '石ころノート',
+  description = '石ころノート',
 } = Astro.props;
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
 ---
 <!doctype html>
 <html lang="ja">
@@ -19,24 +20,23 @@ const base = import.meta.env.BASE_URL;
   <body>
     <div class="site-shell">
       <aside class="sidebar">
-        <a class="logo" href={base}>isikorog note</a>
-        <p class="description">検索・リンク・分類で育てる個人ナレッジベース。</p>
+        <a class="logo" href={url()}>石ころノート</a>
 
         <nav class="nav-section" aria-label="Main navigation">
           <h2>Navigate</h2>
-          <a href={`${base}knowledge/`}>Knowledge</a>
-          <a href={`${base}knowledge/?type=term`}>Terms</a>
-          <a href={`${base}knowledge/?type=guide`}>Guides</a>
-          <a href={`${base}knowledge/?type=memo`}>Memos</a>
+          <a href={url('knowledge/')}>Knowledge</a>
+          <a href={url('knowledge/?type=term')}>Terms</a>
+          <a href={url('knowledge/?type=guide')}>Guides</a>
+          <a href={url('knowledge/?type=memo')}>Memos</a>
         </nav>
 
         <nav class="nav-section" aria-label="Categories">
           <h2>Categories</h2>
-          <a href={`${base}knowledge/?category=Tech`}>Tech</a>
-          <a href={`${base}knowledge/?category=Work`}>Work</a>
-          <a href={`${base}knowledge/?category=Game`}>Game</a>
-          <a href={`${base}knowledge/?category=Tools`}>Tools</a>
-          <a href={`${base}knowledge/?category=Thinking`}>Thinking</a>
+          <a href={url('knowledge/?category=Tech')}>Tech</a>
+          <a href={url('knowledge/?category=Work')}>Work</a>
+          <a href={url('knowledge/?category=Game')}>Game</a>
+          <a href={url('knowledge/?category=Tools')}>Tools</a>
+          <a href={url('knowledge/?category=Thinking')}>Thinking</a>
         </nav>
       </aside>
       <main>
