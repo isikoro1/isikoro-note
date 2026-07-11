@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getDirectory, getSection, groupNotesByDirectory } from '../utils/knowledge';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
@@ -11,52 +12,14 @@ const notes = entries
     const slug = path.replace('../content/knowledge/', '').replace(/\.md$/, '');
     return {
       slug,
+      directory: getDirectory(slug),
       section: getSection(slug),
       ...mod.frontmatter,
     };
   })
-  .filter((note: any) => isVisibleInIndex(note.slug))
   .sort((a: any, b: any) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
 
-function isVisibleInIndex(slug: string) {
-  if (slug.startsWith('work/finance/') && slug !== 'work/finance/financial-domain') return false;
-  return true;
-}
-
-function getSection(slug: string) {
-  if (slug.startsWith('work/finance/')) return '業務';
-  if (slug.startsWith('tech/java/')) return '技術 / Java';
-  if (slug.startsWith('tech/web/')) return '技術 / Web';
-  if (slug.startsWith('tech/frontend/')) return '技術 / フロントエンド';
-  if (slug.startsWith('tech/database/')) return '技術 / データベース';
-  if (slug.startsWith('tech/architecture/')) return '技術 / アーキテクチャ';
-  if (slug.startsWith('tools/')) return 'ツール';
-  if (slug.startsWith('game/')) return 'ゲーム';
-  if (slug.startsWith('life/')) return '生活';
-  if (slug.startsWith('routes/')) return '学習ルート';
-  return 'その他';
-}
-
-const sectionOrder = [
-  '技術 / Java',
-  '技術 / Web',
-  '技術 / フロントエンド',
-  '技術 / データベース',
-  '技術 / アーキテクチャ',
-  '業務',
-  '学習ルート',
-  'ツール',
-  'ゲーム',
-  '生活',
-  'その他',
-];
-
-const groups = sectionOrder
-  .map((section) => ({
-    section,
-    notes: notes.filter((note: any) => note.section === section),
-  }))
-  .filter((group) => group.notes.length > 0);
+const groups = groupNotesByDirectory(notes as any);
 ---
 <BaseLayout title="石ころノート">
   <section class="notice-box">
