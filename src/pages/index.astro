@@ -10,15 +10,44 @@ const notes = entries
     const slug = path.replace('../content/knowledge/', '').replace(/\.md$/, '');
     return {
       slug,
+      section: getSection(slug),
       ...mod.frontmatter,
     };
   })
   .sort((a: any, b: any) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
 
-const groups = ['Tech', 'Work', 'Tools', 'Thinking', 'Game']
-  .map((category) => ({
-    category,
-    notes: notes.filter((note: any) => note.category === category),
+function getSection(slug: string) {
+  if (slug.startsWith('work/finance/')) return '業務 / 金融ドメイン';
+  if (slug.startsWith('tech/java/')) return '技術 / Java';
+  if (slug.startsWith('tech/web/')) return '技術 / Web';
+  if (slug.startsWith('tech/frontend/')) return '技術 / フロントエンド';
+  if (slug.startsWith('tech/database/')) return '技術 / データベース';
+  if (slug.startsWith('tech/architecture/')) return '技術 / アーキテクチャ';
+  if (slug.startsWith('tools/')) return 'ツール';
+  if (slug.startsWith('game/')) return 'ゲーム';
+  if (slug.startsWith('life/')) return '生活';
+  if (slug.startsWith('routes/')) return '学習ルート';
+  return 'その他';
+}
+
+const sectionOrder = [
+  '技術 / Java',
+  '技術 / Web',
+  '技術 / フロントエンド',
+  '技術 / データベース',
+  '技術 / アーキテクチャ',
+  '業務 / 金融ドメイン',
+  '学習ルート',
+  'ツール',
+  'ゲーム',
+  '生活',
+  'その他',
+];
+
+const groups = sectionOrder
+  .map((section) => ({
+    section,
+    notes: notes.filter((note: any) => note.section === section),
   }))
   .filter((group) => group.notes.length > 0);
 ---
@@ -32,7 +61,7 @@ const groups = ['Tech', 'Work', 'Tools', 'Thinking', 'Game']
   <section class="index-sections">
     {groups.map((group) => (
       <section class="index-section">
-        <h2>{group.category}</h2>
+        <h2>{group.section}</h2>
         <ul class="link-index">
           {group.notes.map((note: any) => (
             <li>
