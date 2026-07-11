@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
+const issueUrl = 'https://github.com/isikoro1/isikoro-note/issues/new?title=%E7%9F%B3%E3%81%93%E3%82%8D%E3%83%8E%E3%83%BC%E3%83%88%E3%81%B8%E3%81%AE%E6%8C%87%E6%91%98&body=%E5%AF%BE%E8%B1%A1%E3%83%9A%E3%83%BC%E3%82%B8%3A%20%0A%0A%E6%8C%87%E6%91%98%E5%86%85%E5%AE%B9%3A%20%0A%0A%E5%8F%82%E8%80%83URL%3A%20';
 const entries = Object.entries(import.meta.glob('../content/knowledge/**/*.md', { eager: true }));
 
 const notes = entries
@@ -53,7 +54,7 @@ const groups = sectionOrder
 ---
 <BaseLayout title="石ころノート">
   <section class="notice-box">
-    誤り指摘・要望・追加してほしい項目がある場合は、<a href={url('feedback/')}>誤り指摘フォーム</a>から送信できます。
+    誤り指摘・要望・追加してほしい項目がある場合は、<a href={issueUrl} target="_blank" rel="noopener">GitHub Issues</a> から送信できます。
   </section>
 
   <section id="results" class="link-index search-results" aria-live="polite"></section>
@@ -66,7 +67,6 @@ const groups = sectionOrder
           {group.notes.map((note: any) => (
             <li>
               <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
-              {note.summary && <span>{note.summary}</span>}
             </li>
           ))}
         </ul>
@@ -106,7 +106,6 @@ const groups = sectionOrder
         ? `<h2>検索結果 <span class="count">(${matched.length})</span></h2><ul>${matched.map((doc) => `
             <li>
               <a href="${makeUrl(`knowledge/${doc.slug}/`)}">${doc.title}</a>
-              <span>${doc.summary ?? ''}</span>
             </li>
           `).join('')}</ul>`
         : '<p class="empty">該当するページはまだありません。</p>';
