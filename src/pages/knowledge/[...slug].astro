@@ -24,23 +24,14 @@ const { Content, frontmatter } = page;
 ---
 <BaseLayout title={`${frontmatter.title} | 石ころノート`} description={frontmatter.summary}>
   <article class="article">
-    <p class="meta">
-      {frontmatter.category} / {frontmatter.type} / {frontmatter.status} / Updated: {frontmatter.updated}
-    </p>
     <h1>{frontmatter.title}</h1>
-    {frontmatter.summary && <p class="meta">{frontmatter.summary}</p>}
-
-    {frontmatter.tags?.length > 0 && (
-      <div class="badges">
-        {frontmatter.tags.map((tag: string) => <span class="badge">{tag}</span>)}
-      </div>
-    )}
+    {frontmatter.summary && <p class="lead">{frontmatter.summary}</p>}
 
     <Content />
 
     {frontmatter.related?.length > 0 && (
       <section>
-        <h2>関連ページ</h2>
+        <h2>関連項目</h2>
         <ul class="related-list">
           {frontmatter.related.map((item: any) => (
             <li><a href={url(`knowledge/${item.slug}/`)}>{item.title}</a></li>
