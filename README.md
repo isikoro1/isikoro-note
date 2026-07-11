@@ -55,6 +55,24 @@ src/content/knowledge/work/finance/authorization.md
 src/content/knowledge/life/sleep.md
 ```
 
+## ページ構成
+
+基本構成は次の順序にします。不要な項目は省略できます。
+
+```md
+## 概要
+
+## 内容
+
+## 脚注
+
+## 参考文献
+
+## 外部リンク
+```
+
+関連項目は frontmatter の `related` に書きます。ページ末尾に「関連項目」として自動表示されます。
+
 ## ページテンプレート
 
 ```md
@@ -64,7 +82,7 @@ summary: "短い説明"
 category: "Tech"
 type: "term"
 status: "stub"
-updated: "2026-07-10"
+updated: "2026-07-11"
 tags: ["Java", "Web"]
 aliases: ["別名", "検索用の表記ゆれ"]
 related:
@@ -74,11 +92,19 @@ related:
 
 ## 概要
 
-## 主な用途
+## 内容
 
-## 基本構成
+## 脚注
 
-## 関連する概念
+なし。
+
+## 参考文献
+
+なし。
+
+## 外部リンク
+
+なし。
 ```
 
 ## ページ種別
