@@ -8,6 +8,7 @@ const {
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
+const currentQuery = Astro.url.searchParams.get('q') ?? '';
 ---
 <!doctype html>
 <html lang="ja">
@@ -20,10 +21,15 @@ const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
   <body>
     <header class="site-header">
       <a class="logo" href={url()}>石ころノート</a>
+      <form class="site-search" action={url()} method="get" role="search">
+        <input id="site-search" name="q" type="search" value={currentQuery} placeholder="調べたい単語で検索" />
+        <button type="submit">検索</button>
+      </form>
       <nav class="top-nav" aria-label="Main navigation">
         <a href={url('knowledge/')}>一覧</a>
         <a href={url('knowledge/?category=Tech')}>技術</a>
         <a href={url('knowledge/?category=Work')}>業務</a>
+        <a href={url('feedback/')}>誤り指摘</a>
       </nav>
     </header>
     <main>
