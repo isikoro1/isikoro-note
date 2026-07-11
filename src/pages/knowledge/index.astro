@@ -63,12 +63,11 @@ const title = selectedCategory
     <h1>{title}</h1>
     {groups.map((group) => (
       <section class="index-section">
-        <h2>{group.section}</h2>
+        <h2>{group.section} <span class="count">({group.notes.length})</span></h2>
         <ul class="link-index">
           {group.notes.map((note: any) => (
             <li>
               <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
-              {note.summary && <span>{note.summary}</span>}
             </li>
           ))}
         </ul>
