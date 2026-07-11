@@ -61,7 +61,7 @@ const groups = sectionOrder
   <section class="index-sections">
     {groups.map((group) => (
       <section class="index-section">
-        <h2>{group.section}</h2>
+        <h2>{group.section} <span class="count">({group.notes.length})</span></h2>
         <ul class="link-index">
           {group.notes.map((note: any) => (
             <li>
@@ -103,7 +103,7 @@ const groups = sectionOrder
         .slice(0, 20);
 
       results.innerHTML = matched.length
-        ? `<h2>検索結果</h2><ul>${matched.map((doc) => `
+        ? `<h2>検索結果 <span class="count">(${matched.length})</span></h2><ul>${matched.map((doc) => `
             <li>
               <a href="${makeUrl(`knowledge/${doc.slug}/`)}">${doc.title}</a>
               <span>${doc.summary ?? ''}</span>
