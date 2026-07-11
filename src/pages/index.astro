@@ -52,11 +52,11 @@ const groups = sectionOrder
   .filter((group) => group.notes.length > 0);
 ---
 <BaseLayout title="石ころノート">
-  <section class="hero compact-hero">
-    <h1>石ころノート</h1>
-    <input class="search-box" id="search" type="search" placeholder="調べたい単語で検索" />
-    <div id="results" class="link-index search-results" aria-live="polite"></div>
+  <section class="notice-box">
+    誤り指摘・要望・追加してほしい項目がある場合は、<a href={url('feedback/')}>誤り指摘フォーム</a>から送信できます。
   </section>
+
+  <section id="results" class="link-index search-results" aria-live="polite"></section>
 
   <section class="index-sections">
     {groups.map((group) => (
@@ -76,23 +76,17 @@ const groups = sectionOrder
 
   <script define:vars={{ base }}>
     const searchBase = `${base}/`.replace(/\/+/g, '/');
-    const input = document.querySelector('#search');
+    const input = document.querySelector('#site-search');
     const results = document.querySelector('#results');
     let docs = [];
 
     const normalize = (value) => String(value ?? '').toLowerCase();
     const makeUrl = (path) => `${searchBase}${path}`.replace(/\/+/g, '/');
 
-    fetch(makeUrl('search.json'))
-      .then((res) => res.json())
-      .then((data) => {
-        docs = data;
-      });
-
-    input?.addEventListener('input', () => {
-      const query = normalize(input.value).trim();
-      if (!query) {
-        results.innerHTML = '';
+    const renderResults = (query) => {
+      const normalizedQuery = normalize(query).trim();
+      if (!results || !normalizedQuery) {
+        if (results) results.innerHTML = '';
         return;
       }
 
@@ -105,17 +99,29 @@ const groups = sectionOrder
           ...(doc.tags ?? []),
           ...(doc.aliases ?? []),
           doc.body,
-        ].join(' ')).includes(query))
+        ].join(' ')).includes(normalizedQuery))
         .slice(0, 20);
 
       results.innerHTML = matched.length
-        ? `<ul>${matched.map((doc) => `
+        ? `<h2>検索結果</h2><ul>${matched.map((doc) => `
             <li>
               <a href="${makeUrl(`knowledge/${doc.slug}/`)}">${doc.title}</a>
               <span>${doc.summary ?? ''}</span>
             </li>
           `).join('')}</ul>`
-        : '<p class="empty">まだ該当するページがありません。</p>';
+        : '<p class="empty">該当するページはまだありません。</p>';
+    };
+
+    fetch(makeUrl('search.json'))
+      .then((res) => res.json())
+      .then((data) => {
+        docs = data;
+        const params = new URLSearchParams(window.location.search);
+        renderResults(params.get('q') ?? input?.value ?? '');
+      });
+
+    input?.addEventListener('input', () => {
+      renderResults(input.value);
     });
   </script>
 </BaseLayout>
