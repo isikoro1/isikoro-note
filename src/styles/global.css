@@ -39,18 +39,18 @@ a:hover {
 
 .site-header {
   display: grid;
-  grid-template-columns: auto minmax(220px, 1fr) auto;
+  grid-template-columns: auto minmax(240px, 360px) auto;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   max-width: 980px;
   margin: 0 auto;
-  padding: 10px 14px;
+  padding: 8px 12px;
   background: var(--accent);
 }
 
 .logo {
   display: block;
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   font-weight: 800;
   color: white;
   text-decoration: none;
@@ -60,34 +60,38 @@ a:hover {
 .site-search {
   display: flex;
   justify-self: end;
-  width: min(360px, 100%);
+  width: 100%;
 }
 
 .site-search input {
   width: 100%;
   border: 0;
-  padding: 7px 10px;
+  padding: 5px 8px;
   font: inherit;
   background: white;
   color: var(--text);
+  min-width: 0;
 }
 
 .site-search button {
   border: 0;
   border-left: 1px solid #c9d2df;
-  padding: 7px 12px;
+  padding: 5px 14px;
   font: inherit;
   background: #f4f4f4;
   color: var(--text);
   cursor: pointer;
+  white-space: nowrap;
+  min-width: 56px;
 }
 
 .top-nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 12px;
   font-size: 0.95rem;
   justify-content: flex-end;
+  white-space: nowrap;
 }
 
 .top-nav a {
@@ -103,7 +107,7 @@ main {
 .notice-box {
   background: var(--notice);
   border: 1px solid #ded76b;
-  padding: 10px 14px;
+  padding: 8px 12px;
   margin-bottom: 14px;
   text-align: center;
 }
@@ -262,34 +266,10 @@ main {
   padding-left: 1.2rem;
 }
 
-.feedback-form {
-  display: grid;
+.action-links {
+  display: flex;
+  flex-wrap: wrap;
   gap: 12px;
-  max-width: 720px;
-}
-
-.feedback-form label {
-  font-weight: 700;
-}
-
-.feedback-form input,
-.feedback-form textarea {
-  width: 100%;
-  border: 1px solid var(--line);
-  padding: 8px 10px;
-  font: inherit;
-  background: white;
-  color: var(--text);
-}
-
-.feedback-form button {
-  justify-self: start;
-  border: 1px solid var(--accent);
-  padding: 8px 16px;
-  font: inherit;
-  background: var(--accent);
-  color: white;
-  cursor: pointer;
 }
 
 .shape-grid {
