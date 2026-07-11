@@ -1,15 +1,15 @@
-# isikorog note
+# 石ころノート
 
-技術・開発・ゲーム・仕事の知識を、記事ではなく「あとから引けるページ」として育てる個人ナレッジベースです。
+技術、業務知識、個人開発、ゲーム、生活知識などを、あとから参照できるように整理するナレッジベースです。
 
 ## 方針
 
 - ブログのように時系列で読ませるより、検索・分類・関連リンクでアクセスしやすくする
-- 1ページを小さく保つ
-- 完成度より、まずページを作ることを優先する
-- `status: stub` や `status: draft` を許容する
+- 筆者個人を前面に出さず、知識そのものを中心に書く
+- 個性は語り口ではなく、扱うテーマ・分類・リンク構造に自然に出るものとして扱う
+- 1ページを小さく保ち、必要に応じて追記する
 - 用語ページから関連ページへ飛べるようにする
-- 文章だけでなく、カード・注意枠・フロー図で見やすく整理する
+- 見た目より、情報密度・検索性・階層構造を優先する
 
 ## 技術スタック
 
@@ -25,17 +25,34 @@ npm install
 npm run dev
 ```
 
-## 新しいページの追加
+## ディレクトリ方針
 
 `src/content/knowledge/` 以下に Markdown ファイルを追加します。
 
-例:
+```text
+src/content/knowledge/
+  tech/
+    java/
+    frontend/
+    web/
+    database/
+    architecture/
+  work/
+    finance/
+  game/
+  tools/
+  life/
+  routes/
+```
+
+## 新しいページの追加例
 
 ```text
 src/content/knowledge/tech/java/ejb.md
+src/content/knowledge/tech/frontend/astro.md
 src/content/knowledge/tech/web/cors.md
-src/content/knowledge/work/detail-design.md
-src/content/knowledge/game/example-game/example-page.md
+src/content/knowledge/work/finance/authorization.md
+src/content/knowledge/life/sleep.md
 ```
 
 ## ページテンプレート
@@ -55,48 +72,13 @@ related:
     slug: "tech/java/example"
 ---
 
-## ざっくり
+## 概要
 
-## 何に使う？
+## 主な用途
 
-## 自分用メモ
-```
+## 基本構成
 
-## 図形ブロック
-
-Markdown内にHTMLを書くと、Excelの図形挿入に近い見た目のブロックを使えます。
-使い方は `src/content/knowledge/tools/visual-blocks.md` を参照します。
-
-### 注意枠
-
-```html
-<div class="shape-warning">
-  <h3>注意</h3>
-  <p>ここに注意点を書く。</p>
-</div>
-```
-
-### フロー図
-
-```html
-<div class="flow">
-  <div class="flow-node">Start</div>
-  <div class="flow-arrow">→</div>
-  <div class="flow-node">Process</div>
-  <div class="flow-arrow">→</div>
-  <div class="flow-node">End</div>
-</div>
-```
-
-### カード一覧
-
-```html
-<div class="shape-grid">
-  <div class="shape-card">
-    <h3>項目</h3>
-    <p>説明を書く。</p>
-  </div>
-</div>
+## 関連する概念
 ```
 
 ## ページ種別
@@ -104,7 +86,7 @@ Markdown内にHTMLを書くと、Excelの図形挿入に近い見た目のブロ
 - `term`: 用語ページ
 - `compare`: 比較ページ
 - `guide`: 流れ・入門ページ
-- `memo`: 個人メモ
+- `memo`: 断片的なメモ
 
 ## ステータス
 
