@@ -14,15 +14,12 @@ related:
     slug: "tech/java/jsp"
 ---
 
-## ざっくり
+## 概要
 
 Servlet は、Java で HTTP リクエストを受け取り、HTTP レスポンスを返すための仕組みです。
 
-## 何に使う？
+## 内容
 
 Java の Web アプリケーションの土台として使われます。
 フレームワークを使う場合でも、内部では Servlet の考え方が関係することがあります。
-
-## 自分用メモ
-
-Struts や Spring MVC を理解するときの下地になる。
+Struts や Spring MVC を理解するときの下地になる技術です。
