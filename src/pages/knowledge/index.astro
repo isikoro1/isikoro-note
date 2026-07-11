@@ -13,12 +13,18 @@ const notes = entries
     const slug = path.replace('../../content/knowledge/', '').replace(/\.md$/, '');
     return { slug, section: getSection(slug), ...mod.frontmatter };
   })
+  .filter((note: any) => isVisibleInIndex(note.slug))
   .filter((note: any) => !selectedCategory || note.category === selectedCategory)
   .filter((note: any) => !selectedType || note.type === selectedType)
   .sort((a: any, b: any) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
 
+function isVisibleInIndex(slug: string) {
+  if (slug.startsWith('work/finance/') && slug !== 'work/finance/financial-domain') return false;
+  return true;
+}
+
 function getSection(slug: string) {
-  if (slug.startsWith('work/finance/')) return '業務 / 金融ドメイン';
+  if (slug.startsWith('work/finance/')) return '業務';
   if (slug.startsWith('tech/java/')) return '技術 / Java';
   if (slug.startsWith('tech/web/')) return '技術 / Web';
   if (slug.startsWith('tech/frontend/')) return '技術 / フロントエンド';
@@ -37,7 +43,7 @@ const sectionOrder = [
   '技術 / フロントエンド',
   '技術 / データベース',
   '技術 / アーキテクチャ',
-  '業務 / 金融ドメイン',
+  '業務',
   '学習ルート',
   'ツール',
   'ゲーム',
