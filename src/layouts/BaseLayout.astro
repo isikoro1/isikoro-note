@@ -26,9 +26,6 @@ const currentQuery = Astro.url.searchParams.get('q') ?? '';
         <button type="submit">検索</button>
       </form>
       <nav class="top-nav" aria-label="Main navigation">
-        <a href={url('knowledge/')}>一覧</a>
-        <a href={url('knowledge/?category=Tech')}>技術</a>
-        <a href={url('knowledge/?category=Work')}>業務</a>
         <a href={url('feedback/')}>誤り指摘</a>
       </nav>
     </header>
