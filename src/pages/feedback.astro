@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="誤り指摘 | 石ころノート">
+  <article class="article">
+    <h1>誤り指摘フォーム</h1>
+
+    <p>
+      誤字、内容の誤り、説明不足、追加してほしい項目などを送信できます。
+      送信すると GitHub Issues の作成画面が開きます。
+    </p>
+
+    <form id="feedback-form" class="feedback-form">
+      <div>
+        <label for="feedback-title">件名</label>
+        <input id="feedback-title" name="title" type="text" placeholder="例: Cookieページの説明について" required />
+      </div>
+
+      <div>
+        <label for="feedback-page">対象ページ</label>
+        <input id="feedback-page" name="page" type="text" placeholder="例: /knowledge/tech/web/cookie/" />
+      </div>
+
+      <div>
+        <label for="feedback-body">内容</label>
+        <textarea id="feedback-body" name="body" rows="8" placeholder="指摘内容、補足、参考URLなど" required></textarea>
+      </div>
+
+      <button type="submit">送信</button>
+    </form>
+  </article>
+
+  <script>
+    const form = document.querySelector('#feedback-form');
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const data = new FormData(form);
+      const title = String(data.get('title') ?? '').trim();
+      const page = String(data.get('page') ?? '').trim();
+      const body = String(data.get('body') ?? '').trim();
+
+      const issueTitle = title || '石ころノートへの指摘';
+      const issueBody = [
+        page ? `対象ページ: ${page}` : '',
+        '',
+        body,
+      ].join('\n');
+
+      const params = new URLSearchParams({
+        title: issueTitle,
+        body: issueBody,
+      });
+
+      window.open(`https://github.com/isikoro1/isikoro-note/issues/new?${params.toString()}`, '_blank', 'noopener');
+    });
+  </script>
+</BaseLayout>
