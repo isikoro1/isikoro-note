@@ -11,11 +11,46 @@ const entries = Object.entries(import.meta.glob('../../content/knowledge/**/*.md
 const notes = entries
   .map(([path, mod]: [string, any]) => {
     const slug = path.replace('../../content/knowledge/', '').replace(/\.md$/, '');
-    return { slug, ...mod.frontmatter };
+    return { slug, section: getSection(slug), ...mod.frontmatter };
   })
   .filter((note: any) => !selectedCategory || note.category === selectedCategory)
   .filter((note: any) => !selectedType || note.type === selectedType)
   .sort((a: any, b: any) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
+
+function getSection(slug: string) {
+  if (slug.startsWith('work/finance/')) return '業務 / 金融ドメイン';
+  if (slug.startsWith('tech/java/')) return '技術 / Java';
+  if (slug.startsWith('tech/web/')) return '技術 / Web';
+  if (slug.startsWith('tech/frontend/')) return '技術 / フロントエンド';
+  if (slug.startsWith('tech/database/')) return '技術 / データベース';
+  if (slug.startsWith('tech/architecture/')) return '技術 / アーキテクチャ';
+  if (slug.startsWith('tools/')) return 'ツール';
+  if (slug.startsWith('game/')) return 'ゲーム';
+  if (slug.startsWith('life/')) return '生活';
+  if (slug.startsWith('routes/')) return '学習ルート';
+  return 'その他';
+}
+
+const sectionOrder = [
+  '技術 / Java',
+  '技術 / Web',
+  '技術 / フロントエンド',
+  '技術 / データベース',
+  '技術 / アーキテクチャ',
+  '業務 / 金融ドメイン',
+  '学習ルート',
+  'ツール',
+  'ゲーム',
+  '生活',
+  'その他',
+];
+
+const groups = sectionOrder
+  .map((section) => ({
+    section,
+    notes: notes.filter((note: any) => note.section === section),
+  }))
+  .filter((group) => group.notes.length > 0);
 
 const title = selectedCategory
   ? selectedCategory
@@ -24,15 +59,20 @@ const title = selectedCategory
     : '一覧';
 ---
 <BaseLayout title={`${title} | 石ころノート`}>
-  <section class="index-section">
+  <section class="index-sections">
     <h1>{title}</h1>
-    <ul class="link-index">
-      {notes.map((note: any) => (
-        <li>
-          <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
-          {note.summary && <span>{note.summary}</span>}
-        </li>
-      ))}
-    </ul>
+    {groups.map((group) => (
+      <section class="index-section">
+        <h2>{group.section}</h2>
+        <ul class="link-index">
+          {group.notes.map((note: any) => (
+            <li>
+              <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
+              {note.summary && <span>{note.summary}</span>}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
   </section>
 </BaseLayout>
