@@ -19,7 +19,6 @@ export const GET: APIRoute = () => {
       summary: mod.frontmatter.summary,
       category: mod.frontmatter.category,
       type: mod.frontmatter.type,
-      importance: mod.frontmatter.importance,
       keywords: mod.frontmatter.keywords ?? [],
       tags: mod.frontmatter.tags ?? [],
       aliases: mod.frontmatter.aliases ?? [],
