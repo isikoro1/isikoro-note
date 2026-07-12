@@ -65,6 +65,8 @@ const groups = groupNotesByDirectory(notes as any);
           doc.summary,
           doc.category,
           doc.type,
+          doc.importance,
+          ...(doc.keywords ?? []),
           ...(doc.tags ?? []),
           ...(doc.aliases ?? []),
           doc.body,
