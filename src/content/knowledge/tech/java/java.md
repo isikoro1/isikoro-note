@@ -5,6 +5,18 @@ category: "Tech"
 type: "term"
 status: "draft"
 updated: "2026-07-10"
+importance: "high"
+keywords:
+  - オブジェクト指向
+  - class
+  - interface
+  - 継承
+  - ポリモーフィズム
+  - 例外処理
+  - JVM
+  - コンパイル
+  - Servlet
+  - Spring Boot
 tags: ["Java", "Backend", "Enterprise"]
 aliases: ["Java SE", "Java言語", "ジャバ"]
 related:
