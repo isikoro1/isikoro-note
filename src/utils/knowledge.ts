@@ -7,6 +7,8 @@ const directoryLabels: Record<string, string> = {
   architecture: 'アーキテクチャ',
   work: '業務',
   finance: '金融ドメイン',
+  projects: 'プロジェクト',
+  nekotower: 'ねこタワー',
   routes: '学習ルート',
   tools: 'ツール',
   game: 'ゲーム',
@@ -20,6 +22,7 @@ const directoryOrder = [
   'tech/database',
   'tech/architecture',
   'work/finance',
+  'projects/nekotower',
   'routes',
   'tools',
   'game',
@@ -33,6 +36,7 @@ export type KnowledgeNote = {
   title?: string;
   summary?: string;
   listed?: boolean;
+  updated?: string;
   [key: string]: unknown;
 };
 
@@ -77,4 +81,15 @@ export function groupNotesByDirectory(notes: KnowledgeNote[]) {
       if (order !== 0) return order;
       return a.section.localeCompare(b.section, 'ja');
     });
+}
+
+export function getRecentNotes(notes: KnowledgeNote[], limit = 6) {
+  return [...notes]
+    .filter((note) => note.updated)
+    .sort((a, b) => {
+      const byDate = String(b.updated ?? '').localeCompare(String(a.updated ?? ''));
+      if (byDate !== 0) return byDate;
+      return String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja');
+    })
+    .slice(0, limit);
 }
