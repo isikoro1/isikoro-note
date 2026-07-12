@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getDirectory, getSection, groupNotesByDirectory } from '../utils/knowledge';
+import { getDirectory, getSection, getRecentNotes, groupNotesByDirectory } from '../utils/knowledge';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
-const issueUrl = 'https://github.com/isikoro1/isikoro-note/issues/new?title=%E7%9F%B3%E3%81%93%E3%82%8D%E3%83%8E%E3%83%BC%E3%83%88%E3%81%B8%E3%81%AE%E6%8C%87%E6%91%98&body=%E5%AF%BE%E8%B1%A1%E3%83%9A%E3%83%BC%E3%82%B8%3A%20%0A%0A%E6%8C%87%E6%91%98%E5%86%85%E5%AE%B9%3A%20%0A%0A%E5%8F%82%E8%80%83URL%3A%20';
+const issueUrl = 'https://github.com/isikoro1/isikoro-note/issues/new?title=%E7%9F%B3%E3%81%93%E3%82%8D%E3%83%86%E3%83%83%E3%82%AF%E3%83%9E%E3%83%83%E3%83%97%E3%81%B8%E3%81%AE%E6%8C%87%E6%91%98&body=%E5%AF%BE%E8%B1%A1%E3%83%9A%E3%83%BC%E3%82%B8%3A%20%0A%0A%E6%8C%87%E6%91%98%E5%86%85%E5%AE%B9%3A%20%0A%0A%E5%8F%82%E8%80%83URL%3A%20';
 const entries = Object.entries(import.meta.glob('../content/knowledge/**/*.md', { eager: true }));
 
 const notes = entries
@@ -20,13 +20,29 @@ const notes = entries
   .sort((a: any, b: any) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
 
 const groups = groupNotesByDirectory(notes as any);
+const recentNotes = getRecentNotes(notes as any, 6);
 ---
-<BaseLayout title="石ころノート">
+<BaseLayout title="石ころ技術マップ">
   <section class="notice-box">
     誤り指摘・要望・追加してほしい項目がある場合は、<a href={issueUrl} target="_blank" rel="noopener">GitHub Issues</a> から送信できます。
   </section>
 
   <section id="results" class="link-index search-results" aria-live="polite"></section>
+
+  {recentNotes.length > 0 && (
+    <section class="index-section recent-section">
+      <h2>最近の更新 <span class="count">({recentNotes.length})</span></h2>
+      <ul class="recent-list">
+        {recentNotes.map((note: any) => (
+          <li>
+            <time>{note.updated}</time>
+            <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
+            <span>{note.section}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 
   <section class="index-sections">
     {groups.map((group) => (
