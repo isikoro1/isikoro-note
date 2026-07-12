@@ -5,6 +5,20 @@ category: "Work"
 type: "guide"
 status: "draft"
 updated: "2026-07-10"
+importance: "high"
+keywords:
+  - 決済
+  - 与信
+  - オーソリ
+  - 売上確定
+  - 精算
+  - 請求
+  - 入金
+  - 取消
+  - 返品
+  - チャージバック
+  - 監査ログ
+  - 状態遷移
 tags: ["金融", "決済", "業務知識", "Domain"]
 aliases: ["金融システム", "金融業務", "FinTech", "決済ドメイン"]
 related:
