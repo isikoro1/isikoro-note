@@ -235,6 +235,22 @@ main {
   margin: 0 0 14px;
 }
 
+.term-meta {
+  border: 1px solid var(--line);
+  background: var(--accent-soft);
+  padding: 8px 10px;
+  margin: 12px 0 18px;
+  font-size: 0.95rem;
+}
+
+.term-meta p {
+  margin: 0;
+}
+
+.term-meta p + p {
+  margin-top: 4px;
+}
+
 .article :is(h2, h3) {
   margin-top: 2rem;
 }
