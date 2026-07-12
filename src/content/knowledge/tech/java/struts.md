@@ -5,6 +5,18 @@ category: "Tech"
 type: "term"
 status: "draft"
 updated: "2026-07-10"
+importance: "medium"
+keywords:
+  - Action
+  - Form
+  - JSP
+  - Servlet
+  - MVC
+  - struts-config.xml
+  - forward
+  - mapping
+  - Controller
+  - 画面遷移
 tags: ["Java", "Web", "MVC", "Legacy"]
 aliases: ["Apache Struts", "Struts Framework"]
 related:
