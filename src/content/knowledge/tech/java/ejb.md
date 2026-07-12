@@ -5,6 +5,18 @@ category: "Tech"
 type: "term"
 status: "draft"
 updated: "2026-07-10"
+importance: "medium"
+keywords:
+  - Enterprise JavaBeans
+  - Session Bean
+  - Message-Driven Bean
+  - Entity Bean
+  - EJBコンテナ
+  - コンテナ管理
+  - トランザクション管理
+  - 業務ロジック
+  - Java EE
+  - JTA
 tags: ["Java", "Java EE", "Enterprise", "Legacy"]
 aliases: ["Enterprise JavaBeans", "Enterprise Java Beans", "EJBコンテナ"]
 related:
