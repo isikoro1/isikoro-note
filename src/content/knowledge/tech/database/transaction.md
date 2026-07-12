@@ -5,6 +5,17 @@ category: "Tech"
 type: "term"
 status: "draft"
 updated: "2026-07-10"
+importance: "high"
+keywords:
+  - commit
+  - rollback
+  - ACID
+  - transaction boundary
+  - isolation level
+  - deadlock
+  - 排他制御
+  - 二重更新
+  - 整合性
 tags: ["Database", "SQL", "Java", "金融"]
 aliases: ["トランザクション", "DBトランザクション", "ACID"]
 related:
