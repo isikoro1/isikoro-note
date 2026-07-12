@@ -3,6 +3,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
+const importanceLabels: Record<string, string> = {
+  high: '高',
+  medium: '中',
+  low: '低',
+};
 
 export async function getStaticPaths() {
   const modules = import.meta.glob('../../content/knowledge/**/*.md');
@@ -21,11 +26,26 @@ const modules = import.meta.glob('../../content/knowledge/**/*.md');
 const loader = modules[path];
 const page: any = await loader();
 const { Content, frontmatter } = page;
+const importance = frontmatter.importance ? importanceLabels[frontmatter.importance] ?? frontmatter.importance : '';
 ---
-<BaseLayout title={`${frontmatter.title} | 石ころノート`} description={frontmatter.summary}>
+<BaseLayout title={`${frontmatter.title} | 石ころ技術マップ`} description={frontmatter.summary}>
   <article class="article">
     <h1>{frontmatter.title}</h1>
     {frontmatter.summary && <p class="lead">{frontmatter.summary}</p>}
+
+    {(importance || frontmatter.keywords?.length > 0) && (
+      <section class="term-meta" aria-label="重要度と重要語">
+        {importance && <p><strong>重要度:</strong> {importance}</p>}
+        {frontmatter.keywords?.length > 0 && (
+          <p>
+            <strong>重要語:</strong>{' '}
+            {frontmatter.keywords.map((keyword: string, index: number) => (
+              <span>{keyword}{index < frontmatter.keywords.length - 1 ? ' / ' : ''}</span>
+            ))}
+          </p>
+        )}
+      </section>
+    )}
 
     <Content />
 
