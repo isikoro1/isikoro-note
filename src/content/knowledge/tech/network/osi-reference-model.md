@@ -4,6 +4,7 @@ summary: "ネットワーク通信を7つの層に分けて整理するための
 category: "Tech"
 type: "term"
 status: "draft"
+created: "2026-07-14"
 updated: "2026-07-14"
 tags: ["Network", "TCP/IP", "基礎"]
 aliases: ["OSI", "OSIモデル", "OSI 7階層", "Open Systems Interconnection"]
@@ -19,6 +20,9 @@ keywords:
   - IP
   - TCP
   - HTTP
+history:
+  - date: "2026-07-14"
+    text: "初版作成"
 related:
   - title: "TCP/IP"
     slug: "tech/network/tcp-ip"
