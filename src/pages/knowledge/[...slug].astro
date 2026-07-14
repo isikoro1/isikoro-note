@@ -21,24 +21,49 @@ const modules = import.meta.glob('../../content/knowledge/**/*.md');
 const loader = modules[path];
 const page: any = await loader();
 const { Content, frontmatter } = page;
+const hasDates = frontmatter.created || frontmatter.updated;
+const hasHistory = frontmatter.history?.length > 0;
 ---
 <BaseLayout title={`${frontmatter.title} | 石ころ技術マップ`} description={frontmatter.summary}>
   <article class="article">
     <h1>{frontmatter.title}</h1>
     {frontmatter.summary && <p class="lead">{frontmatter.summary}</p>}
 
-    {frontmatter.keywords?.length > 0 && (
-      <section class="term-meta" aria-label="キーワード">
-        <p>
-          <strong>キーワード:</strong>{' '}
-          {frontmatter.keywords.map((keyword: string, index: number) => (
-            <span>{keyword}{index < frontmatter.keywords.length - 1 ? ' / ' : ''}</span>
-          ))}
-        </p>
+    {(hasDates || frontmatter.keywords?.length > 0) && (
+      <section class="term-meta" aria-label="ページ情報">
+        {hasDates && (
+          <p>
+            {frontmatter.created && <span><strong>作成日:</strong> {frontmatter.created}</span>}
+            {frontmatter.created && frontmatter.updated && <span> / </span>}
+            {frontmatter.updated && <span><strong>更新日:</strong> {frontmatter.updated}</span>}
+          </p>
+        )}
+        {frontmatter.keywords?.length > 0 && (
+          <p>
+            <strong>キーワード:</strong>{' '}
+            {frontmatter.keywords.map((keyword: string, index: number) => (
+              <span>{keyword}{index < frontmatter.keywords.length - 1 ? ' / ' : ''}</span>
+            ))}
+          </p>
+        )}
       </section>
     )}
 
     <Content />
+
+    {hasHistory && (
+      <section>
+        <h2>更新履歴</h2>
+        <ul class="history-list">
+          {frontmatter.history.map((item: any) => (
+            <li>
+              <time>{item.date}</time>
+              <span>{item.text}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
 
     {frontmatter.related?.length > 0 && (
       <section>
