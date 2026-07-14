@@ -9,7 +9,6 @@ const directoryLabels: Record<string, string> = {
   work: '業務',
   finance: '金融ドメイン',
   projects: 'プロジェクト',
-  nekotower: 'ねこタワー',
   routes: '学習ルート',
   tools: 'ツール',
   game: 'ゲーム',
@@ -17,6 +16,7 @@ const directoryLabels: Record<string, string> = {
 };
 
 const directoryOrder = [
+  'projects',
   'tech/java',
   'tech/web',
   'tech/frontend',
@@ -24,7 +24,6 @@ const directoryOrder = [
   'tech/database',
   'tech/architecture',
   'work/finance',
-  'projects/nekotower',
   'routes',
   'tools',
   'game',
@@ -42,7 +41,16 @@ export type KnowledgeNote = {
   [key: string]: unknown;
 };
 
+function getProjectDirectory(slug: string) {
+  if (!slug.startsWith('projects/')) return null;
+  const parts = slug.split('/');
+  return parts.length === 2 ? 'projects' : null;
+}
+
 export function getDirectory(slug: string) {
+  const projectDirectory = getProjectDirectory(slug);
+  if (projectDirectory) return projectDirectory;
+
   const parts = slug.split('/');
   return parts.slice(0, -1).join('/');
 }
