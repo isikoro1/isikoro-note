@@ -4,6 +4,7 @@ summary: "HTTPを使ってリソースを操作するAPI設計の考え方。Web
 category: "Tech"
 type: "term"
 status: "draft"
+created: "2026-07-14"
 updated: "2026-07-14"
 tags: ["Web", "API", "HTTP", "Backend"]
 aliases: ["REST", "RESTful API", "Web API", "API設計"]
@@ -23,6 +24,9 @@ keywords:
   - idempotency
   - 認証
   - 認可
+history:
+  - date: "2026-07-14"
+    text: "初版作成"
 related:
   - title: "冪等性"
     slug: "tech/architecture/idempotency"
