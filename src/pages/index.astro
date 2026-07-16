@@ -93,10 +93,28 @@ const recentNotes = getRecentNotes(notes as any, 8);
       .replace(/\s+/g, ' ')
       .trim();
     const highlight = (text, query) => {
-      const escapedText = escapeHtml(text);
-      const escapedQuery = escapeHtml(query);
-      if (!escapedQuery) return escapedText;
-      return escapedText.replaceAll(escapedQuery, `<mark>${escapedQuery}</mark>`);
+      const rawText = String(text ?? '');
+      const rawQuery = String(query ?? '').trim();
+      if (!rawQuery) return escapeHtml(rawText);
+
+      const lowerText = rawText.toLowerCase();
+      const lowerQuery = rawQuery.toLowerCase();
+      let cursor = 0;
+      let html = '';
+
+      while (cursor < rawText.length) {
+        const index = lowerText.indexOf(lowerQuery, cursor);
+        if (index === -1) {
+          html += escapeHtml(rawText.slice(cursor));
+          break;
+        }
+
+        html += escapeHtml(rawText.slice(cursor, index));
+        html += `<mark>${escapeHtml(rawText.slice(index, index + rawQuery.length))}</mark>`;
+        cursor = index + rawQuery.length;
+      }
+
+      return html;
     };
     const findMatch = (doc, normalizedQuery) => {
       const fields = [
