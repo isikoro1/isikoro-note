@@ -19,7 +19,45 @@ const notes = entries
   })
   .sort((a: any, b: any) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
 
-const groups = groupNotesByDirectory(notes as any);
+const manualChildSlugs: Record<string, string[]> = {
+  'tech/frontend/astro': [
+    'tech/frontend/astro-adoption',
+    'tech/frontend/why-this-site-uses-astro',
+  ],
+  'tech/frontend/site-search': [
+    'tech/frontend/site-search-code',
+  ],
+};
+
+const countChildPages = (note: any) => {
+  if (note.slug === 'terms/overview') {
+    return notes.filter((item: any) => item.directory === 'terms' && item.slug !== 'terms/overview' && item.listed !== false).length;
+  }
+
+  if (note.slug === 'reverse/overview') {
+    return notes.filter((item: any) => item.directory === 'reverse' && item.slug !== 'reverse/overview' && item.listed !== false).length;
+  }
+
+  if (String(note.slug).endsWith('/overview')) {
+    const root = String(note.slug).replace(/\/overview$/, '');
+    return notes.filter((item: any) => item.slug !== note.slug && String(item.slug).startsWith(`${root}/`)).length;
+  }
+
+  const manualChildren = manualChildSlugs[note.slug] ?? [];
+  if (manualChildren.length > 0) {
+    return manualChildren.filter((slug) => notes.some((item: any) => item.slug === slug)).length;
+  }
+
+  return notes.filter((item: any) => item.slug !== note.slug && String(item.slug).startsWith(`${note.slug}/`)).length;
+};
+
+const groups = groupNotesByDirectory(notes as any).map((group) => ({
+  ...group,
+  notes: group.notes.map((note: any) => ({
+    ...note,
+    childCount: countChildPages(note),
+  })),
+}));
 const recentNotes = getRecentNotes(notes as any, 8);
 ---
 <BaseLayout title="石ころノート">
@@ -39,11 +77,14 @@ const recentNotes = getRecentNotes(notes as any, 8);
       <section class="index-sections">
         {groups.map((group) => (
           <section class="index-section">
-            <h2>{group.section} <span class="count">({group.notes.length})</span></h2>
+            <h2>{group.section}</h2>
             <ul class="link-index">
               {group.notes.map((note: any) => (
                 <li>
                   <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
+                  {note.childCount > 0 && (
+                    <span style="float: right; color: var(--muted); white-space: nowrap; margin-left: 12px;">({note.childCount})</span>
+                  )}
                 </li>
               ))}
             </ul>
