@@ -153,6 +153,12 @@ main {
 
 .search-results {
   margin-bottom: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.search-results:empty {
+  display: none;
 }
 
 .search-results h2 {
@@ -162,6 +168,39 @@ main {
   line-height: 1.4;
   margin: 0;
   padding: 5px 10px;
+}
+
+.search-results ul {
+  list-style: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.search-results li {
+  border-bottom: 1px solid var(--line);
+  padding: 7px 0;
+}
+
+.search-results li:last-child {
+  border-bottom: 0;
+}
+
+.search-hit-label,
+.search-hit-snippet {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.search-hit-label {
+  font-size: 0.85rem;
+}
+
+.search-hit-snippet mark {
+  background: var(--notice);
+  color: var(--text);
+  padding: 0 2px;
 }
 
 .count {
