@@ -4,7 +4,7 @@ summary: "Java、EJB、Struts、トランザクション、金融ドメインを
 category: "Thinking"
 type: "guide"
 status: "draft"
-updated: "2026-07-10"
+updated: "2026-07-17"
 tags: ["Java", "金融", "バックエンド", "学習ルート"]
 aliases: ["金融Java", "Java金融", "業務Java学習"]
 related:
@@ -29,18 +29,18 @@ Java金融バックエンドを読むための入口ページです。
 
 まず読むページは次の通りです。
 
-1. Java
-2. Java EE
-3. Servlet
-4. JSP
-5. Struts
-6. EJB
-7. Transaction
-8. 金融ドメイン
-9. クレジットカードシステム
-10. オーソリ
-11. 売上確定
-12. 精算
+1. [Java](/isikoro-note/knowledge/tech/java/java/)
+2. [Java EE](/isikoro-note/knowledge/tech/java/java-ee/)
+3. [Servlet](/isikoro-note/knowledge/tech/java/servlet/)
+4. [JSP](/isikoro-note/knowledge/tech/java/jsp/)
+5. [Struts](/isikoro-note/knowledge/tech/java/struts/)
+6. [EJB](/isikoro-note/knowledge/tech/java/ejb/)
+7. [Transaction](/isikoro-note/knowledge/tech/database/transaction/)
+8. [金融ドメイン](/isikoro-note/knowledge/work/finance/financial-domain/)
+9. [クレジットカードシステム](/isikoro-note/knowledge/work/finance/credit-card-system/)
+10. [オーソリ](/isikoro-note/knowledge/work/finance/authorization/)
+11. [売上確定](/isikoro-note/knowledge/work/finance/capture/)
+12. [精算](/isikoro-note/knowledge/work/finance/settlement/)
 
 ## 技術の流れ
 
