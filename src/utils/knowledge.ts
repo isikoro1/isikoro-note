@@ -43,8 +43,12 @@ export type KnowledgeNote = {
 
 function getProjectDirectory(slug: string) {
   if (!slug.startsWith('projects/')) return null;
+
   const parts = slug.split('/');
-  return parts.length === 2 ? 'projects' : null;
+  if (parts.length === 2) return 'projects';
+  if (parts[2] === 'overview') return 'projects';
+
+  return null;
 }
 
 export function getDirectory(slug: string) {
