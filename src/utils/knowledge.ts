@@ -55,6 +55,7 @@ export function getDirectory(slug: string) {
   if (slug.startsWith('routes/')) return 'routes';
   if (slug.startsWith('reverse/')) return 'reverse';
   if (slug.startsWith('notes/')) return 'notes';
+  if (slug.startsWith('terms/')) return 'terms';
   if (slug.startsWith('tech/') || slug.startsWith('work/') || slug.startsWith('tools/')) return 'terms';
 
   const parts = slug.split('/');
@@ -71,11 +72,17 @@ export function getDirectorySortKey(directory: string) {
   return index === -1 ? 999 : index;
 }
 
+function shouldShowInTop(note: KnowledgeNote) {
+  if (note.listed === false) return false;
+  if (note.directory === 'terms' && note.slug !== 'terms/overview') return false;
+  return true;
+}
+
 export function groupNotesByDirectory(notes: KnowledgeNote[]) {
   const groups = new Map<string, KnowledgeNote[]>();
 
   for (const note of notes) {
-    if (note.listed === false) continue;
+    if (!shouldShowInTop(note)) continue;
 
     const groupNotes = groups.get(note.directory) ?? [];
     groupNotes.push(note);
