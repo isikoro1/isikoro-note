@@ -1,6 +1,8 @@
 const directoryLabels: Record<string, string> = {
   projects: 'プロジェクト',
   deep: '深掘りノート',
+  language: '言語',
+  library: 'ライブラリ',
   terms: 'IT用語メモ',
   routes: '学習ルート',
   reverse: '逆引き辞典',
@@ -10,6 +12,8 @@ const directoryLabels: Record<string, string> = {
 const directoryOrder = [
   'projects',
   'deep',
+  'language',
+  'library',
   'terms',
   'routes',
   'reverse',
@@ -21,9 +25,20 @@ const deepNoteSlugs = new Set([
   'tech/frontend/astro-adoption',
   'tech/frontend/why-this-site-uses-astro',
   'tech/frontend/site-search',
-  'tech/frontend/site-search-code',
   'tech/architecture/clean-architecture',
   'tech/architecture/layered-architecture',
+]);
+
+const languageSlugs = new Set([
+  'tech/java/java',
+  'tech/python/python',
+  'tech/go/go',
+  'tech/haskell/haskell',
+  'tech/clojure/clojure',
+]);
+
+const librarySlugs = new Set([
+  'tech/frontend/react',
 ]);
 
 export type KnowledgeNote = {
@@ -52,6 +67,8 @@ export function getDirectory(slug: string) {
   if (projectDirectory) return projectDirectory;
 
   if (deepNoteSlugs.has(slug)) return 'deep';
+  if (languageSlugs.has(slug)) return 'language';
+  if (librarySlugs.has(slug)) return 'library';
   if (slug.startsWith('routes/')) return 'routes';
   if (slug.startsWith('reverse/')) return 'reverse';
   if (slug.startsWith('notes/')) return 'notes';
