@@ -21,7 +21,11 @@ keywords:
 history:
   - date: "2026-07-14"
     text: "初版作成"
+  - date: "2026-07-14"
+    text: "コード解説ページを関連項目に追加"
 related:
+  - title: "コードで見る検索機能"
+    slug: "tech/frontend/site-search-code"
   - title: "Astro"
     slug: "tech/frontend/astro"
   - title: "このサイトでAstroを選んだ理由"
@@ -107,6 +111,10 @@ related:
 
 検索語はURLの `q` パラメータにも反映します。
 これにより、検索状態を残したURLとして扱えます。
+
+## 子ページ
+
+- [コードで見る検索機能](/isikoro-note/knowledge/tech/frontend/site-search-code/)
 
 ## 見るときの観点
 
