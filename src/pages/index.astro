@@ -27,7 +27,7 @@ const recentNotes = getRecentNotes(notes as any, 8);
     誤り指摘は、<a href={issueUrl} target="_blank" rel="noopener">GitHub Issues</a> から送信できます。
   </section>
 
-  <section id="results" class="link-index search-results" aria-live="polite"></section>
+  <section id="results" class="search-results" aria-live="polite"></section>
 
   <div class="top-tabs" data-tabs>
     <div class="tab-buttons" role="tablist" aria-label="トップ表示切り替え">
@@ -73,11 +73,58 @@ const recentNotes = getRecentNotes(notes as any, 8);
   <script define:vars={{ base }}>
     const searchBase = `${base}/`.replace(/\/+/g, '/');
     const input = document.querySelector('#site-search');
+    const form = input?.closest('form');
     const results = document.querySelector('#results');
     let docs = [];
 
     const normalize = (value) => String(value ?? '').toLowerCase();
     const makeUrl = (path) => `${searchBase}${path}`.replace(/\/+/g, '/');
+    const escapeHtml = (value) => String(value ?? '')
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+    const stripMarkdown = (value) => String(value ?? '')
+      .replace(/^#+\s+/gm, '')
+      .replace(/`([^`]+)`/g, '$1')
+      .replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1')
+      .replace(/[>*_\-]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    const highlight = (text, query) => {
+      const escapedText = escapeHtml(text);
+      const escapedQuery = escapeHtml(query);
+      if (!escapedQuery) return escapedText;
+      return escapedText.replaceAll(escapedQuery, `<mark>${escapedQuery}</mark>`);
+    };
+    const findMatch = (doc, normalizedQuery) => {
+      const fields = [
+        { label: 'タイトル', value: doc.title },
+        { label: '概要', value: doc.summary },
+        { label: 'キーワード', value: [...(doc.keywords ?? []), ...(doc.tags ?? []), ...(doc.aliases ?? [])].join(' / ') },
+        { label: '本文', value: stripMarkdown(doc.body) },
+      ];
+
+      for (const field of fields) {
+        const text = String(field.value ?? '');
+        const index = normalize(text).indexOf(normalizedQuery);
+        if (index === -1) continue;
+
+        const start = Math.max(0, index - 45);
+        const end = Math.min(text.length, index + normalizedQuery.length + 70);
+        const prefix = start > 0 ? '…' : '';
+        const suffix = end < text.length ? '…' : '';
+        const excerpt = `${prefix}${text.slice(start, end)}${suffix}`;
+
+        return {
+          label: field.label,
+          excerpt,
+        };
+      }
+
+      return null;
+    };
 
     const renderResults = (query) => {
       const normalizedQuery = normalize(query).trim();
@@ -87,25 +134,33 @@ const recentNotes = getRecentNotes(notes as any, 8);
       }
 
       const matched = docs
-        .filter((doc) => normalize([
-          doc.title,
-          doc.summary,
-          doc.category,
-          doc.type,
-          ...(doc.keywords ?? []),
-          ...(doc.tags ?? []),
-          ...(doc.aliases ?? []),
-          doc.body,
-        ].join(' ')).includes(normalizedQuery))
+        .map((doc) => ({ doc, match: findMatch(doc, normalizedQuery) }))
+        .filter((item) => item.match)
         .slice(0, 20);
 
       results.innerHTML = matched.length
-        ? `<h2>検索結果 <span class="count">(${matched.length})</span></h2><ul>${matched.map((doc) => `
+        ? `<h2>検索結果 <span class="count">(${matched.length})</span></h2><ul>${matched.map(({ doc, match }) => `
             <li>
-              <a href="${makeUrl(`knowledge/${doc.slug}/`)}">${doc.title}</a>
+              <a href="${makeUrl(`knowledge/${doc.slug}/`)}">${escapeHtml(doc.title)}</a>
+              <p class="search-hit-label">${escapeHtml(match.label)}でヒット</p>
+              <p class="search-hit-snippet">${highlight(match.excerpt, query)}</p>
             </li>
           `).join('')}</ul>`
         : '<p class="empty">該当するページはまだありません。</p>';
+    };
+
+    const applySearch = (query, shouldUpdateUrl = true) => {
+      const value = String(query ?? '').trim();
+      renderResults(value);
+
+      if (!shouldUpdateUrl) return;
+      const nextUrl = new URL(window.location.href);
+      if (value) {
+        nextUrl.searchParams.set('q', value);
+      } else {
+        nextUrl.searchParams.delete('q');
+      }
+      window.history.replaceState({}, '', nextUrl);
     };
 
     fetch(makeUrl('search.json'))
@@ -113,11 +168,18 @@ const recentNotes = getRecentNotes(notes as any, 8);
       .then((data) => {
         docs = data;
         const params = new URLSearchParams(window.location.search);
-        renderResults(params.get('q') ?? input?.value ?? '');
+        const initialQuery = params.get('q') ?? input?.value ?? '';
+        if (input && initialQuery) input.value = initialQuery;
+        applySearch(initialQuery, false);
       });
 
     input?.addEventListener('input', () => {
-      renderResults(input.value);
+      applySearch(input.value);
+    });
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      applySearch(input?.value ?? '');
     });
 
     const tabRoot = document.querySelector('[data-tabs]');
