@@ -4,7 +4,7 @@ import { getDirectory, getSection, getRecentNotes, groupNotesByDirectory } from 
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
-const issueUrl = 'https://github.com/isikoro1/isikoro-note/issues/new?title=%E7%9F%B3%E3%81%93%E3%82%8D%E3%83%86%E3%83%83%E3%82%AF%E3%83%9E%E3%83%83%E3%83%97%E3%81%B8%E3%81%AE%E6%8C%87%E6%91%98&body=%E5%AF%BE%E8%B1%A1%E3%83%9A%E3%83%BC%E3%82%B8%3A%20%0A%0A%E6%8C%87%E6%91%98%E5%86%85%E5%AE%B9%3A%20%0A%0A%E5%8F%82%E8%80%83URL%3A%20';
+const issueUrl = 'https://github.com/isikoro1/isikoro-note/issues/new?title=%E7%9F%B3%E3%81%93%E3%82%8D%E3%83%8E%E3%83%BC%E3%83%88%E3%81%B8%E3%81%AE%E6%8C%87%E6%91%98&body=%E5%AF%BE%E8%B1%A1%E3%83%9A%E3%83%BC%E3%82%B8%3A%20%0A%0A%E6%8C%87%E6%91%98%E5%86%85%E5%AE%B9%3A%20%0A%0A%E5%8F%82%E8%80%83URL%3A%20';
 const entries = Object.entries(import.meta.glob('../content/knowledge/**/*.md', { eager: true }));
 
 const notes = entries
@@ -22,7 +22,7 @@ const notes = entries
 const groups = groupNotesByDirectory(notes as any);
 const recentNotes = getRecentNotes(notes as any, 8);
 ---
-<BaseLayout title="石ころ技術マップ">
+<BaseLayout title="石ころノート">
   <section class="notice-box">
     誤り指摘は、<a href={issueUrl} target="_blank" rel="noopener">GitHub Issues</a> から送信できます。
   </section>
@@ -31,7 +31,7 @@ const recentNotes = getRecentNotes(notes as any, 8);
 
   <div class="top-tabs" data-tabs>
     <div class="tab-buttons" role="tablist" aria-label="トップ表示切り替え">
-      <button class="tab-button is-active" type="button" role="tab" aria-selected="true" aria-controls="map-panel" data-tab="map">技術マップ</button>
+      <button class="tab-button is-active" type="button" role="tab" aria-selected="true" aria-controls="map-panel" data-tab="map">ノート一覧</button>
       <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="recent-panel" data-tab="recent">最近の更新</button>
     </div>
 
