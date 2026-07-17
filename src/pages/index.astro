@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getDirectory, getSection, getRecentNotes, groupNotesByDirectory } from '../utils/knowledge';
+import { getDirectory, getSection, groupNotesByDirectory } from '../utils/knowledge';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
@@ -24,8 +24,11 @@ const manualChildSlugs: Record<string, string[]> = {
     'tech/frontend/astro-adoption',
     'tech/frontend/why-this-site-uses-astro',
   ],
-  'tech/frontend/site-search': [
-    'tech/frontend/site-search-code',
+  'tech/architecture/overview': [
+    'tech/architecture/clean-architecture',
+    'tech/architecture/layered-architecture',
+    'tech/architecture/mvc',
+    'tech/architecture/readable-code',
   ],
 };
 
@@ -35,12 +38,14 @@ const countChildPages = (note: any) => {
   }
 
   if (note.slug === 'reverse/overview') {
-    return notes.filter((item: any) => item.directory === 'reverse' && item.slug !== 'reverse/overview' && item.listed !== false).length;
+    return notes.filter((item: any) => item.slug !== 'reverse/overview' && item.listed !== false).length;
   }
 
   if (String(note.slug).endsWith('/overview')) {
     const root = String(note.slug).replace(/\/overview$/, '');
-    return notes.filter((item: any) => item.slug !== note.slug && String(item.slug).startsWith(`${root}/`)).length;
+    const directChildren = notes.filter((item: any) => item.slug !== note.slug && String(item.slug).startsWith(`${root}/`)).length;
+    const manualChildren = manualChildSlugs[note.slug] ?? [];
+    return Math.max(directChildren, manualChildren.filter((slug) => notes.some((item: any) => item.slug === slug)).length);
   }
 
   const manualChildren = manualChildSlugs[note.slug] ?? [];
@@ -58,7 +63,6 @@ const groups = groupNotesByDirectory(notes as any).map((group) => ({
     childCount: countChildPages(note),
   })),
 }));
-const recentNotes = getRecentNotes(notes as any, 8);
 ---
 <BaseLayout title="石ころノート">
   <section class="notice-box">
@@ -67,49 +71,23 @@ const recentNotes = getRecentNotes(notes as any, 8);
 
   <section id="results" class="search-results" aria-live="polite"></section>
 
-  <div class="top-tabs" data-tabs>
-    <div class="tab-buttons" role="tablist" aria-label="トップ表示切り替え">
-      <button class="tab-button is-active" type="button" role="tab" aria-selected="true" aria-controls="map-panel" data-tab="map">ノート一覧</button>
-      <button class="tab-button" type="button" role="tab" aria-selected="false" aria-controls="recent-panel" data-tab="recent">最近の更新</button>
-    </div>
-
-    <section id="map-panel" class="tab-panel is-active" role="tabpanel">
-      <section class="index-sections">
-        {groups.map((group) => (
-          <section class="index-section">
-            <h2>{group.section}</h2>
-            <ul class="link-index">
-              {group.notes.map((note: any) => (
-                <li>
-                  <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
-                  {note.childCount > 0 && (
-                    <span style="float: right; color: var(--muted); white-space: nowrap; margin-left: 12px;">({note.childCount})</span>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+  <section class="index-sections">
+    {groups.map((group) => (
+      <section class="index-section">
+        <h2>{group.section}</h2>
+        <ul class="link-index">
+          {group.notes.map((note: any) => (
+            <li>
+              <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
+              {note.childCount > 0 && (
+                <span style="float: right; color: var(--muted); white-space: nowrap; margin-left: 12px;">({note.childCount})</span>
+              )}
+            </li>
+          ))}
+        </ul>
       </section>
-    </section>
-
-    <section id="recent-panel" class="tab-panel" role="tabpanel" hidden>
-      {recentNotes.length > 0 && (
-        <section class="index-section recent-section">
-          <h2>最近の更新 <span class="count">({recentNotes.length})</span></h2>
-          <ul class="recent-list">
-            {recentNotes.map((note: any) => (
-              <li>
-                <time>{note.updated}</time>
-                <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
-                <span>{note.section}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-    </section>
-  </div>
+    ))}
+  </section>
 
   <script define:vars={{ base }}>
     const searchBase = `${base}/`.replace(/\/+/g, '/');
@@ -239,31 +217,6 @@ const recentNotes = getRecentNotes(notes as any, 8);
     form?.addEventListener('submit', (event) => {
       event.preventDefault();
       applySearch(input?.value ?? '');
-    });
-
-    const tabRoot = document.querySelector('[data-tabs]');
-    const tabButtons = tabRoot?.querySelectorAll('[data-tab]') ?? [];
-    const panels = {
-      map: document.querySelector('#map-panel'),
-      recent: document.querySelector('#recent-panel'),
-    };
-
-    tabButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const selected = button.dataset.tab;
-
-        tabButtons.forEach((item) => {
-          const isActive = item === button;
-          item.classList.toggle('is-active', isActive);
-          item.setAttribute('aria-selected', String(isActive));
-        });
-
-        Object.entries(panels).forEach(([key, panel]) => {
-          const isActive = key === selected;
-          panel?.classList.toggle('is-active', isActive);
-          if (panel) panel.hidden = !isActive;
-        });
-      });
     });
   </script>
 </BaseLayout>
