@@ -31,6 +31,7 @@ const deepNoteSlugs = new Set([
 
 const languageSlugs = new Set([
   'tech/java/java',
+  'tech/typescript/typescript',
   'tech/python/python',
   'tech/go/go',
   'tech/haskell/haskell',
