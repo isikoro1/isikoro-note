@@ -1,4 +1,5 @@
 const directoryLabels: Record<string, string> = {
+  start: 'はじめに',
   projects: '自作プロジェクト',
   feature: '機能',
   language: '言語',
@@ -12,6 +13,7 @@ const directoryLabels: Record<string, string> = {
 };
 
 const directoryOrder = [
+  'start',
   'projects',
   'feature',
   'language',
@@ -48,10 +50,7 @@ const librarySlugs = new Set([
 ]);
 
 const designSlugs = new Set([
-  'tech/architecture/clean-architecture',
-  'tech/architecture/layered-architecture',
-  'tech/architecture/mvc',
-  'tech/architecture/readable-code',
+  'tech/architecture/overview',
 ]);
 
 export type KnowledgeNote = {
@@ -79,6 +78,7 @@ export function getDirectory(slug: string) {
   const projectDirectory = getProjectDirectory(slug);
   if (projectDirectory) return projectDirectory;
 
+  if (slug.startsWith('start/')) return 'start';
   if (featureSlugs.has(slug)) return 'feature';
   if (languageSlugs.has(slug)) return 'language';
   if (librarySlugs.has(slug)) return 'library';
