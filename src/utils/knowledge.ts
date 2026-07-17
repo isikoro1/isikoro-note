@@ -7,7 +7,7 @@ const directoryLabels: Record<string, string> = {
   deep: '深掘りノート',
   terms: 'IT用語メモ',
   routes: '学習ルート',
-  reverse: '逆引き辞典',
+  reverse: '索引',
   notes: 'ノート',
 };
 
