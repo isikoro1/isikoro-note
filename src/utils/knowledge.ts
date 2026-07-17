@@ -1,5 +1,5 @@
 const directoryLabels: Record<string, string> = {
-  projects: 'プロジェクト',
+  projects: '自作プロジェクト',
   deep: '深掘りノート',
   language: '言語',
   library: 'ライブラリ',
