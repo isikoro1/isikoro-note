@@ -1,74 +1,119 @@
 ---
 title: "逆引き辞典"
-summary: "困りごとや作りたい機能から、関連するノートを探すための入口。"
+summary: "石ころノート内のページを、カテゴリや観点から探すための索引。"
 category: "Note"
 type: "index"
 status: "draft"
 created: "2026-07-16"
-updated: "2026-07-16"
-tags: ["逆引き", "調べ方", "ノート"]
-aliases: ["困りごとから探す", "目的別索引", "逆引き"]
+updated: "2026-07-17"
+tags: ["逆引き", "索引", "目次", "ノート"]
+aliases: ["索引", "目的別索引", "ページ索引", "インデックス"]
 keywords:
+  - index
   - reverse lookup
-  - troubleshooting
-  - how to find
-  - site search
-  - architecture
-  - database
+  - glossary index
+  - category index
+  - site navigation
 history:
   - date: "2026-07-16"
     text: "初版作成"
+  - date: "2026-07-17"
+    text: "困りごと集から索引寄りのページへ修正"
 related:
+  - title: "IT用語メモ"
+    slug: "terms/overview"
   - title: "サイト内検索"
     slug: "tech/frontend/site-search"
   - title: "Astro"
     slug: "tech/frontend/astro"
-  - title: "レイヤードアーキテクチャ"
-    slug: "tech/architecture/layered-architecture"
 ---
 
 ## 概要
 
-逆引き辞典は、用語名から探すのではなく、困りごとや作りたい機能から関連するノートを探すための入口です。
+逆引き辞典は、石ころノート内のページを探すための索引です。
 
-通常の用語メモは「トランザクション」「インデックス」「Astro」のように名前から入ります。
-逆引き辞典では、「検索機能を作りたい」「画面と業務処理を分けたい」「DBが遅い原因を調べたい」のような目的から入ります。
+通常のトップページはカテゴリごとの入口です。
+このページでは、技術名、用途、関心ごとから、関連するページへ移動できるようにします。
 
 ## 使い方
 
-まずは大きな困りごとを選び、そこから関連するノートに移動します。
+探したい対象がはっきりしている場合は、上部の検索を使います。
+まだ言葉がはっきりしていない場合は、この索引から近い項目を辿ります。
 
-## 機能を作りたい
+## 言語
 
-- サイト内検索を作りたい → [サイト内検索](/isikoro-note/knowledge/tech/frontend/site-search/)
-- 検索機能のコードを読みたい → [コードで見る検索機能](/isikoro-note/knowledge/tech/frontend/site-search-code/)
-- Markdownからページを作りたい → [Astro](/isikoro-note/knowledge/tech/frontend/astro/)
-- 静的サイトとして公開したい → [このサイトでAstroを選んだ理由](/isikoro-note/knowledge/tech/frontend/why-this-site-uses-astro/)
+- [Java](/isikoro-note/knowledge/tech/java/java/)
+- [Python](/isikoro-note/knowledge/tech/python/python/)
+- [Go](/isikoro-note/knowledge/tech/go/go/)
+- [Haskell](/isikoro-note/knowledge/tech/haskell/haskell/)
+- [Clojure](/isikoro-note/knowledge/tech/clojure/clojure/)
 
-## 設計を整理したい
+## ライブラリ・フレームワーク
 
-- 画面、業務処理、DBアクセスを分けたい → [レイヤードアーキテクチャ](/isikoro-note/knowledge/tech/architecture/layered-architecture/)
-- ビジネスルールを中心に設計したい → [クリーンアーキテクチャ](/isikoro-note/knowledge/tech/architecture/clean-architecture/)
-- Controller / Service / DAO の役割を考えたい → [MVC](/isikoro-note/knowledge/tech/architecture/mvc/)
+- [React](/isikoro-note/knowledge/tech/frontend/react/)
+- [Astro](/isikoro-note/knowledge/tech/frontend/astro/)
+- [Struts](/isikoro-note/knowledge/tech/java/struts/)
+- [EJB](/isikoro-note/knowledge/tech/java/ejb/)
+- [Servlet](/isikoro-note/knowledge/tech/java/servlet/)
+- [JSP](/isikoro-note/knowledge/tech/java/jsp/)
 
-## DBまわりで困った
+## 自作プロジェクト
 
-- 処理を途中で壊したくない → [Transaction](/isikoro-note/knowledge/tech/database/transaction/)
-- DB接続を使い回したい → [コネクションプール](/isikoro-note/knowledge/tech/database/connection-pool/)
-- 検索やJOINが遅い → [Index](/isikoro-note/knowledge/tech/database/db-index/)
-- 同時更新が怖い → [排他制御](/isikoro-note/knowledge/tech/database/exclusive-control/)
-- 処理が互いに待ち続ける → [Deadlock](/isikoro-note/knowledge/tech/database/deadlock/)
+- [ねこタワー](/isikoro-note/knowledge/projects/nekotower/overview/)
+- [ひとりごったー](/isikoro-note/knowledge/projects/hitorigotter/)
+- [マトリックスクイズ](/isikoro-note/knowledge/projects/matrix-quiz/)
 
-## Webまわりで困った
+## サイト制作
 
-- APIの設計方針を知りたい → [REST API](/isikoro-note/knowledge/tech/web/rest-api/)
-- ログイン状態を扱いたい → [Session](/isikoro-note/knowledge/tech/web/session/)
-- ブラウザに情報を持たせたい → [Cookie](/isikoro-note/knowledge/tech/web/cookie/)
-- トークン認証を整理したい → [JWT](/isikoro-note/knowledge/tech/web/jwt/)
+- [サイト内検索](/isikoro-note/knowledge/tech/frontend/site-search/)
+- [Astroはどこで使われているのか](/isikoro-note/knowledge/tech/frontend/astro-adoption/)
+- [このサイトでAstroを選んだ理由](/isikoro-note/knowledge/tech/frontend/why-this-site-uses-astro/)
+
+## 設計
+
+- [レイヤードアーキテクチャ](/isikoro-note/knowledge/tech/architecture/layered-architecture/)
+- [クリーンアーキテクチャ](/isikoro-note/knowledge/tech/architecture/clean-architecture/)
+- [MVC](/isikoro-note/knowledge/tech/architecture/mvc/)
+- [冪等性](/isikoro-note/knowledge/tech/architecture/idempotency/)
+- [リトライ](/isikoro-note/knowledge/tech/architecture/retry/)
+- [タイムアウト](/isikoro-note/knowledge/tech/architecture/timeout/)
+
+## データベース
+
+- [Transaction](/isikoro-note/knowledge/tech/database/transaction/)
+- [コネクションプール](/isikoro-note/knowledge/tech/database/connection-pool/)
+- [Deadlock](/isikoro-note/knowledge/tech/database/deadlock/)
+- [排他制御](/isikoro-note/knowledge/tech/database/exclusive-control/)
+- [分離レベル](/isikoro-note/knowledge/tech/database/isolation-level/)
+- [N+1問題](/isikoro-note/knowledge/tech/database/n-plus-one/)
+- [DBインデックス](/isikoro-note/knowledge/tech/database/db-index/)
+
+## Web
+
+- [REST API](/isikoro-note/knowledge/tech/web/rest-api/)
+- [Cookie](/isikoro-note/knowledge/tech/web/cookie/)
+- [Session](/isikoro-note/knowledge/tech/web/session/)
+- [JWT](/isikoro-note/knowledge/tech/web/jwt/)
+
+## ネットワーク
+
+- [TCP/IP](/isikoro-note/knowledge/tech/network/tcp-ip/)
+- [OSI参照モデル](/isikoro-note/knowledge/tech/network/osi-reference-model/)
+
+## 業務・金融
+
+- [金融ドメイン](/isikoro-note/knowledge/work/finance/financial-domain/)
+- [クレジットカードシステム](/isikoro-note/knowledge/work/finance/credit-card-system/)
+- [オーソリ](/isikoro-note/knowledge/work/finance/authorization/)
+- [売上確定](/isikoro-note/knowledge/work/finance/capture/)
+- [精算](/isikoro-note/knowledge/work/finance/settlement/)
+
+## 学習ルート
+
+- [Java金融バックエンド学習ルート](/isikoro-note/knowledge/routes/java-finance-backend/)
+- [基本情報技術者](/isikoro-note/knowledge/routes/basic-information-engineer/)
 
 ## 今後の方針
 
-最初から完全な辞典にしようとすると重くなります。
-まずは、自分が実装や学習で詰まった項目を少しずつ追加します。
-
-逆引き辞典は、深掘りノートとIT用語メモをつなぐための索引として使います。
+逆引き辞典は、記事本文を長くする場所ではありません。
+ページが増えたときに迷わないよう、石ころノート内の案内板として使います。
