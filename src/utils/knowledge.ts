@@ -1,6 +1,7 @@
 const directoryLabels: Record<string, string> = {
   projects: '自作プロジェクト',
   deep: '深掘りノート',
+  feature: '機能',
   language: '言語',
   library: 'ライブラリ',
   terms: 'IT用語メモ',
@@ -12,6 +13,7 @@ const directoryLabels: Record<string, string> = {
 const directoryOrder = [
   'projects',
   'deep',
+  'feature',
   'language',
   'library',
   'terms',
@@ -24,9 +26,12 @@ const deepNoteSlugs = new Set([
   'tech/frontend/astro',
   'tech/frontend/astro-adoption',
   'tech/frontend/why-this-site-uses-astro',
-  'tech/frontend/site-search',
   'tech/architecture/clean-architecture',
   'tech/architecture/layered-architecture',
+]);
+
+const featureSlugs = new Set([
+  'tech/frontend/site-search',
 ]);
 
 const languageSlugs = new Set([
@@ -68,6 +73,7 @@ export function getDirectory(slug: string) {
   if (projectDirectory) return projectDirectory;
 
   if (deepNoteSlugs.has(slug)) return 'deep';
+  if (featureSlugs.has(slug)) return 'feature';
   if (languageSlugs.has(slug)) return 'language';
   if (librarySlugs.has(slug)) return 'library';
   if (slug.startsWith('routes/')) return 'routes';
