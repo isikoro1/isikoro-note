@@ -80,7 +80,7 @@ const groups = groupNotesByDirectory(notes as any).map((group) => ({
             <li>
               <a href={url(`knowledge/${note.slug}/`)}>{note.title}</a>
               {note.childCount > 0 && (
-                <span style="float: right; color: var(--muted); white-space: nowrap; margin-left: 12px;">({note.childCount})</span>
+                <span class="child-count">({note.childCount})</span>
               )}
             </li>
           ))}
