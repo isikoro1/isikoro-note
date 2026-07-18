@@ -252,11 +252,20 @@ main {
   font-weight: 600;
 }
 
-.link-index span {
+.link-index span:not(.child-count) {
   display: block;
   color: var(--muted);
   font-size: 0.9rem;
   line-height: 1.55;
+}
+
+.child-count {
+  display: inline;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1;
+  margin-left: 4px;
+  white-space: nowrap;
 }
 
 .recent-list {
