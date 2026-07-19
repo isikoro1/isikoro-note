@@ -15,6 +15,8 @@ keywords:
   - site update
 history:
   - date: "2026-07-17"
+    text: "AI・セキュリティ関連ページの追加を反映"
+  - date: "2026-07-17"
     text: "初版作成"
 related:
   - title: "このサイトについて"
@@ -32,6 +34,16 @@ related:
 
 ## 2026年7月17日
 
+- [このサイトについて](/isikoro-note/knowledge/start/about/) に、サイトを作った理由とAI利用についての説明を追記しました。
+- AI関連のページを追加しました。
+  - [AI](/isikoro-note/knowledge/tech/ai/ai/)
+  - [ChatGPT](/isikoro-note/knowledge/tech/ai/chatgpt/)
+  - [AI駆動開発](/isikoro-note/knowledge/tech/development/ai-driven-development/)
+- [セキュリティ](/isikoro-note/knowledge/tech/security/security/) カテゴリとページを追加しました。
+- [IT用語メモ](/isikoro-note/knowledge/terms/overview/) に AI / ChatGPT を追加しました。
+- [アーキテクチャ](/isikoro-note/knowledge/tech/architecture/overview/) に AI駆動開発を追加しました。
+- [React](/isikoro-note/knowledge/tech/frontend/react/) から Astro との比較を削除し、React 自体の説明に寄せました。
+- トップページの子ページ数表示を、リンク直後に出るよう修正しました。
 - 「はじめに」カテゴリを追加しました。
   - [このサイトについて](/isikoro-note/knowledge/start/about/)
   - [使用上の注意](/isikoro-note/knowledge/start/notes/)
