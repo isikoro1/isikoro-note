@@ -5,7 +5,7 @@ category: "Note"
 type: "history"
 status: "draft"
 created: "2026-07-17"
-updated: "2026-07-17"
+updated: "2026-07-19"
 tags: ["更新履歴", "履歴", "はじめに"]
 aliases: ["履歴", "主な更新履歴", "更新情報"]
 keywords:
@@ -14,6 +14,8 @@ keywords:
   - history
   - site update
 history:
+  - date: "2026-07-19"
+    text: "セキュリティ子ページの追加を反映"
   - date: "2026-07-17"
     text: "AI・セキュリティ関連ページの追加を反映"
   - date: "2026-07-17"
@@ -31,6 +33,19 @@ related:
 
 トップページの一時的な更新タブではなく、独立した履歴ページとして残します。
 とほほのWWW入門の更新履歴のように、日付ごとに追加・更新内容を並べる形式にします。
+
+## 2026年7月19日
+
+- [セキュリティ](/isikoro-note/knowledge/tech/security/security/) の子ページを追加しました。
+  - [認証](/isikoro-note/knowledge/tech/security/authentication/)
+  - [認可](/isikoro-note/knowledge/tech/security/authorization/)
+  - [XSS](/isikoro-note/knowledge/tech/security/xss/)
+  - [CSRF](/isikoro-note/knowledge/tech/security/csrf/)
+  - [SQLインジェクション](/isikoro-note/knowledge/tech/security/sql-injection/)
+  - [暗号化](/isikoro-note/knowledge/tech/security/encryption/)
+  - [ハッシュ化](/isikoro-note/knowledge/tech/security/hashing/)
+- トップページで [セキュリティ](/isikoro-note/knowledge/tech/security/security/) の子ページ数を表示するようにしました。
+- [索引](/isikoro-note/knowledge/reverse/overview/) にセキュリティ子ページを追加しました。
 
 ## 2026年7月17日
 
