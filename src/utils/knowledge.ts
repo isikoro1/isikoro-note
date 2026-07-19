@@ -5,6 +5,7 @@ const directoryLabels: Record<string, string> = {
   language: '言語',
   library: 'ライブラリ・フレームワーク',
   design: '設計・設計思想',
+  security: 'セキュリティ',
   deep: '深掘りノート',
   terms: 'IT用語メモ',
   routes: '学習ルート',
@@ -19,6 +20,7 @@ const directoryOrder = [
   'language',
   'library',
   'design',
+  'security',
   'deep',
   'terms',
   'routes',
@@ -51,6 +53,11 @@ const librarySlugs = new Set([
 
 const designSlugs = new Set([
   'tech/architecture/overview',
+  'tech/development/ai-driven-development',
+]);
+
+const securitySlugs = new Set([
+  'tech/security/security',
 ]);
 
 export type KnowledgeNote = {
@@ -83,6 +90,7 @@ export function getDirectory(slug: string) {
   if (languageSlugs.has(slug)) return 'language';
   if (librarySlugs.has(slug)) return 'library';
   if (designSlugs.has(slug)) return 'design';
+  if (securitySlugs.has(slug)) return 'security';
   if (deepNoteSlugs.has(slug)) return 'deep';
   if (slug.startsWith('routes/')) return 'routes';
   if (slug.startsWith('reverse/')) return 'reverse';
