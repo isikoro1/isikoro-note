@@ -5,7 +5,7 @@ category: "Tech"
 type: "index"
 status: "draft"
 created: "2026-07-17"
-updated: "2026-07-17"
+updated: "2026-07-19"
 tags: ["アーキテクチャ", "設計", "設計思想"]
 aliases: ["設計", "設計思想", "Architecture"]
 keywords:
@@ -14,9 +14,12 @@ keywords:
   - clean architecture
   - layered architecture
   - readable code
+  - AI駆動開発
 history:
   - date: "2026-07-17"
     text: "初版作成"
+  - date: "2026-07-19"
+    text: "AI駆動開発を追加"
 related:
   - title: "クリーンアーキテクチャ"
     slug: "tech/architecture/clean-architecture"
@@ -24,6 +27,8 @@ related:
     slug: "tech/architecture/layered-architecture"
   - title: "リーダブルコード"
     slug: "tech/architecture/readable-code"
+  - title: "AI駆動開発"
+    slug: "tech/development/ai-driven-development"
 ---
 
 ## 概要
@@ -38,6 +43,7 @@ related:
 - [レイヤードアーキテクチャ](/isikoro-note/knowledge/tech/architecture/layered-architecture/)
 - [MVC](/isikoro-note/knowledge/tech/architecture/mvc/)
 - [リーダブルコード](/isikoro-note/knowledge/tech/architecture/readable-code/)
+- [AI駆動開発](/isikoro-note/knowledge/tech/development/ai-driven-development/)
 
 ## 近いが別カテゴリのもの
 
