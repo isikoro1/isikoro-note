@@ -15,6 +15,8 @@ keywords:
   - site update
 history:
   - date: "2026-07-19"
+    text: "React子ページの追加を反映"
+  - date: "2026-07-19"
     text: "セキュリティ子ページの追加を反映"
   - date: "2026-07-17"
     text: "AI・セキュリティ関連ページの追加を反映"
@@ -36,6 +38,14 @@ related:
 
 ## 2026年7月19日
 
+- [React](/isikoro-note/knowledge/tech/frontend/react/) を学習入口として整理し、子ページを追加しました。
+  - [Reactのコンポーネント](/isikoro-note/knowledge/tech/frontend/react-component/)
+  - [Reactのprops](/isikoro-note/knowledge/tech/frontend/react-props/)
+  - [Reactのstate](/isikoro-note/knowledge/tech/frontend/react-state/)
+  - [Reactのhooks](/isikoro-note/knowledge/tech/frontend/react-hooks/)
+  - [Reactの非同期処理](/isikoro-note/knowledge/tech/frontend/react-async/)
+- トップページで [React](/isikoro-note/knowledge/tech/frontend/react/) の子ページ数を表示するようにしました。
+- [索引](/isikoro-note/knowledge/reverse/overview/) にReact子ページを追加しました。
 - [セキュリティ](/isikoro-note/knowledge/tech/security/security/) の子ページを追加しました。
   - [認証](/isikoro-note/knowledge/tech/security/authentication/)
   - [認可](/isikoro-note/knowledge/tech/security/authorization/)
