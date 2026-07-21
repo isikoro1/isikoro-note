@@ -2,7 +2,9 @@ const directoryLabels: Record<string, string> = {
   start: 'はじめに',
   projects: '自作プロジェクト',
   feature: '機能',
+  infrastructure: 'インフラ',
   language: '言語',
+  javaWeb: 'Java Web',
   library: 'ライブラリ・フレームワーク',
   design: '設計・設計思想',
   security: 'セキュリティ',
@@ -17,7 +19,9 @@ const directoryOrder = [
   'start',
   'projects',
   'feature',
+  'infrastructure',
   'language',
+  'javaWeb',
   'library',
   'design',
   'security',
@@ -37,6 +41,11 @@ const featureSlugs = new Set([
   'tech/frontend/site-search',
 ]);
 
+const infrastructureSlugs = new Set([
+  'tech/cloud/aws',
+  'tech/network/tcp-ip',
+]);
+
 const languageSlugs = new Set([
   'tech/java/java',
   'tech/typescript/typescript',
@@ -44,6 +53,10 @@ const languageSlugs = new Set([
   'tech/go/go',
   'tech/haskell/haskell',
   'tech/clojure/clojure',
+]);
+
+const javaWebSlugs = new Set([
+  'tech/java/jsp',
 ]);
 
 const librarySlugs = new Set([
@@ -87,7 +100,9 @@ export function getDirectory(slug: string) {
 
   if (slug.startsWith('start/')) return 'start';
   if (featureSlugs.has(slug)) return 'feature';
+  if (infrastructureSlugs.has(slug)) return 'infrastructure';
   if (languageSlugs.has(slug)) return 'language';
+  if (javaWebSlugs.has(slug)) return 'javaWeb';
   if (librarySlugs.has(slug)) return 'library';
   if (designSlugs.has(slug)) return 'design';
   if (securitySlugs.has(slug)) return 'security';
