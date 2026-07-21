@@ -17,7 +17,6 @@ const directoryLabels: Record<string, string> = {
 
 const directoryOrder = [
   'start',
-  'projects',
   'feature',
   'infrastructure',
   'language',
@@ -27,6 +26,7 @@ const directoryOrder = [
   'security',
   'deep',
   'terms',
+  'projects',
   'routes',
   'reverse',
   'notes',
@@ -67,6 +67,7 @@ const librarySlugs = new Set([
 const designSlugs = new Set([
   'tech/architecture/overview',
   'tech/development/ai-driven-development',
+  'tech/programming-paradigm/overview',
 ]);
 
 const securitySlugs = new Set([
