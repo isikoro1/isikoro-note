@@ -15,7 +15,7 @@ keywords:
   - site update
 history:
   - date: "2026-07-22"
-    text: "AWSページの追加とトップページのカテゴリ変更を反映"
+    text: "AWS、トップページの分類、プログラミングパラダイム関連ページの追加を反映"
   - date: "2026-07-21"
     text: "このサイトについての更新とlogic:equalタグの追加を反映"
   - date: "2026-07-19"
@@ -42,9 +42,16 @@ related:
 
 ## 2026年7月22日
 
+- [プログラミングパラダイム](/isikoro-note/knowledge/tech/programming-paradigm/overview/) と、手続き型・関数型・宣言型の各ページを追加しました。
+- 既存の [オブジェクト指向](/isikoro-note/knowledge/tech/architecture/object-oriented-programming/) をパラダイムの体系へ接続しました。
+- [プログラミングパラダイムの比較](/isikoro-note/knowledge/tech/programming-paradigm/comparison/) を追加しました。
+- トップページでは「プログラミングパラダイム」を「設計・設計思想」に表示し、「自作プロジェクト」を下部へ移動しました。
+
 - [AWS](/isikoro-note/knowledge/tech/cloud/aws/) を追加しました。
 - AWSページで、東京大学計数工学科の無料講義資料 [AWSによるクラウド入門](https://tomomano.gitlab.io/intro-aws/) を紹介しました。
-- [IT用語メモ](/isikoro-note/knowledge/terms/overview/) に「クラウド・インフラ」を追加しました。\n- トップページに「インフラ」カテゴリを追加し、[AWS](/isikoro-note/knowledge/tech/cloud/aws/) と [TCP/IP](/isikoro-note/knowledge/tech/network/tcp-ip/) を表示するようにしました。\n- トップページに「Java Web」カテゴリを追加し、[JSP](/isikoro-note/knowledge/tech/java/jsp/) を表示するようにしました。
+- [IT用語メモ](/isikoro-note/knowledge/terms/overview/) に「クラウド・インフラ」を追加しました。
+- トップページに「インフラ」カテゴリを追加し、[AWS](/isikoro-note/knowledge/tech/cloud/aws/) と [TCP/IP](/isikoro-note/knowledge/tech/network/tcp-ip/) を表示するようにしました。
+- トップページに「Java Web」カテゴリを追加し、[JSP](/isikoro-note/knowledge/tech/java/jsp/) を表示するようにしました。
 
 ## 2026年7月21日
 
