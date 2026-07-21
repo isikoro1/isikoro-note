@@ -42,7 +42,7 @@ related:
 
 - [このサイトについて](/isikoro-note/knowledge/start/about/) の作成理由、対象範囲、AI利用についての説明を整理しました。
 - [logic:equalタグ](/isikoro-note/knowledge/tech/java/logic-equal/) を追加しました。
-- [JSP](/isikoro-note/knowledge/tech/java/jsp/) と [IT用語メモ](/isikoro-note/knowledge/terms/overview/) から、logic:equalタグのページを辿れるようにしました。
+- [JSP](/isikoro-note/knowledge/tech/java/jsp/) と [IT用語メモ](/isikoro-note/knowledge/terms/overview/) から、logic:equalタグのページを辿れるようにしました。\n- 各記事のブラウザタイトルに残っていた旧名称「石ころ技術マップ」を「石ころノート」に修正しました。
 
 ## 2026年7月19日
 
