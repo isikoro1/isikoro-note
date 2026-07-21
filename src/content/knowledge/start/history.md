@@ -5,7 +5,7 @@ category: "Note"
 type: "history"
 status: "draft"
 created: "2026-07-17"
-updated: "2026-07-21"
+updated: "2026-07-22"
 tags: ["更新履歴", "履歴", "はじめに"]
 aliases: ["履歴", "主な更新履歴", "更新情報"]
 keywords:
@@ -14,6 +14,8 @@ keywords:
   - history
   - site update
 history:
+  - date: "2026-07-22"
+    text: "AWSページの追加を反映"
   - date: "2026-07-21"
     text: "このサイトについての更新とlogic:equalタグの追加を反映"
   - date: "2026-07-19"
@@ -38,11 +40,18 @@ related:
 トップページの一時的な更新タブではなく、独立した履歴ページとして残します。
 とほほのWWW入門の更新履歴のように、日付ごとに追加・更新内容を並べる形式にします。
 
+## 2026年7月22日
+
+- [AWS](/isikoro-note/knowledge/tech/cloud/aws/) を追加しました。
+- AWSページで、東京大学計数工学科の無料講義資料 [AWSによるクラウド入門](https://tomomano.gitlab.io/intro-aws/) を紹介しました。
+- [IT用語メモ](/isikoro-note/knowledge/terms/overview/) に「クラウド・インフラ」を追加しました。
+
 ## 2026年7月21日
 
 - [このサイトについて](/isikoro-note/knowledge/start/about/) の作成理由、対象範囲、AI利用についての説明を整理しました。
 - [logic:equalタグ](/isikoro-note/knowledge/tech/java/logic-equal/) を追加しました。
-- [JSP](/isikoro-note/knowledge/tech/java/jsp/) と [IT用語メモ](/isikoro-note/knowledge/terms/overview/) から、logic:equalタグのページを辿れるようにしました。\n- 各記事のブラウザタイトルに残っていた旧名称「石ころ技術マップ」を「石ころノート」に修正しました。
+- [JSP](/isikoro-note/knowledge/tech/java/jsp/) と [IT用語メモ](/isikoro-note/knowledge/terms/overview/) から、logic:equalタグのページを辿れるようにしました。
+- 各記事のブラウザタイトルに残っていた旧名称「石ころ技術マップ」を「石ころノート」に修正しました。
 
 ## 2026年7月19日
 
