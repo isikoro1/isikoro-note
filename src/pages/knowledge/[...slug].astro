@@ -24,7 +24,7 @@ const { Content, frontmatter } = page;
 const hasDates = frontmatter.created || frontmatter.updated;
 const hasHistory = frontmatter.history?.length > 0;
 ---
-<BaseLayout title={`${frontmatter.title} | 石ころ技術マップ`} description={frontmatter.summary}>
+<BaseLayout title={`${frontmatter.title} | 石ころノート`} description={frontmatter.summary}>
   <article class="article">
     <h1>{frontmatter.title}</h1>
     {frontmatter.summary && <p class="lead">{frontmatter.summary}</p>}
