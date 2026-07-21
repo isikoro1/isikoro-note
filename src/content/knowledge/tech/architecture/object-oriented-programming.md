@@ -5,13 +5,19 @@ category: "Tech"
 type: "guide"
 status: "draft"
 created: "2026-07-21"
-updated: "2026-07-21"
+updated: "2026-07-22"
 tags: ["Architecture", "Design", "Java"]
 aliases: ["Object-Oriented Programming", "OOP", "オブジェクト指向プログラミング"]
 history:
   - date: "2026-07-21"
     text: "初版作成"
+  - date: "2026-07-22"
+    text: "プログラミングパラダイムの親ページと比較ページへのリンクを追加"
 related:
+  - title: "プログラミングパラダイム"
+    slug: "tech/programming-paradigm/overview"
+  - title: "プログラミングパラダイムの比較"
+    slug: "tech/programming-paradigm/comparison"
   - title: "カプセル化"
     slug: "tech/architecture/encapsulation"
   - title: "抽象化"
