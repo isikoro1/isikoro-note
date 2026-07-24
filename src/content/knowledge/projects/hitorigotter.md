@@ -22,7 +22,7 @@ history:
     text: "初版作成"
 related:
   - title: "Go"
-    slug: "tech/web/go"
+    slug: "tech/go/go"
 ---
 
 ## 概要
