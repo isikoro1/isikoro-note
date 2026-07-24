@@ -28,10 +28,6 @@ history:
 related:
   - title: "ねこタワー"
     slug: "projects/nekotower/overview"
-  - title: "JavaScript"
-    slug: "tech/web/javascript"
-  - title: "Firebase"
-    slug: "tech/web/firebase"
 ---
 
 ## 概要
