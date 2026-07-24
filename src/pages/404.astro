@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
+---
+<BaseLayout title="ページが見つかりません | 石ころノート" description="指定されたページは見つかりませんでした。">
+  <article class="article not-found">
+    <h1>ページが見つかりません</h1>
+    <p>URLが変更されたか、ページが削除された可能性があります。</p>
+
+    <h2>探し直す</h2>
+    <ul>
+      <li><a href={url()}>トップページのカテゴリから探す</a></li>
+      <li><a href={url('knowledge/reverse/overview/')}>索引から探す</a></li>
+      <li><a href={url('knowledge/start/history/')}>更新履歴を確認する</a></li>
+    </ul>
+
+    <p>ページ名が分かる場合は、上部の検索を利用してください。</p>
+  </article>
+</BaseLayout>
