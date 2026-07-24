@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getSection } from '../../utils/knowledge';
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const url = (path = '') => `${base}/${path}`.replace(/\/+/g, '/');
@@ -18,14 +19,51 @@ export async function getStaticPaths() {
 
 const { path } = Astro.props;
 const modules = import.meta.glob('../../content/knowledge/**/*.md');
+const metaModules = import.meta.glob('../../content/knowledge/**/*.md', { eager: true });
 const loader = modules[path];
 const page: any = await loader();
 const { Content, frontmatter } = page;
+const currentSlug = path.replace('../../content/knowledge/', '').replace(/\.md$/, '');
+const section = getSection(currentSlug);
+const headings = typeof page.getHeadings === 'function'
+  ? (await page.getHeadings()).filter((heading: any) => heading.depth === 2 || heading.depth === 3)
+  : [];
 const hasDates = frontmatter.created || frontmatter.updated;
 const hasHistory = frontmatter.history?.length > 0;
+
+const allNotes = Object.entries(metaModules).map(([notePath, mod]: [string, any]) => ({
+  slug: notePath.replace('../../content/knowledge/', '').replace(/\.md$/, ''),
+  title: mod.frontmatter.title,
+  related: mod.frontmatter.related ?? [],
+}));
+
+const parent = frontmatter.parent
+  ? allNotes.find((note) => note.slug === frontmatter.parent)
+  : null;
+
+const backlinks = allNotes
+  .filter((note) =>
+    note.slug !== currentSlug
+    && note.related.some((item: any) => item.slug === currentSlug)
+  )
+  .sort((a, b) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
 ---
 <BaseLayout title={`${frontmatter.title} | 石ころノート`} description={frontmatter.summary}>
   <article class="article">
+    <nav class="breadcrumbs" aria-label="パンくず">
+      <a href={url()}>トップ</a>
+      <span aria-hidden="true">›</span>
+      <span>{section}</span>
+      {parent && (
+        <>
+          <span aria-hidden="true">›</span>
+          <a href={url(`knowledge/${parent.slug}/`)}>{parent.title}</a>
+        </>
+      )}
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">{frontmatter.title}</span>
+    </nav>
+
     <h1>{frontmatter.title}</h1>
     {frontmatter.summary && <p class="lead">{frontmatter.summary}</p>}
 
@@ -49,6 +87,19 @@ const hasHistory = frontmatter.history?.length > 0;
       </section>
     )}
 
+    {headings.length >= 2 && (
+      <nav class="page-toc" aria-label="ページ内目次">
+        <strong>目次</strong>
+        <ol>
+          {headings.map((heading: any) => (
+            <li class={heading.depth === 3 ? 'toc-depth-3' : undefined}>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
+
     <Content />
 
     {hasHistory && (
@@ -70,6 +121,17 @@ const hasHistory = frontmatter.history?.length > 0;
         <h2>関連項目</h2>
         <ul class="related-list">
           {frontmatter.related.map((item: any) => (
+            <li><a href={url(`knowledge/${item.slug}/`)}>{item.title}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {backlinks.length > 0 && (
+      <section>
+        <h2>このページを参照しているページ</h2>
+        <ul class="backlink-list">
+          {backlinks.map((item) => (
             <li><a href={url(`knowledge/${item.slug}/`)}>{item.title}</a></li>
           ))}
         </ul>
