@@ -336,6 +336,51 @@ main {
   margin: 0 0 14px;
 }
 
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.breadcrumbs a {
+  color: inherit;
+}
+
+.page-toc {
+  margin: 18px 0 24px;
+  border: 1px solid var(--line);
+  background: var(--accent-soft);
+  padding: 12px 16px;
+}
+
+.page-toc strong {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.page-toc ol {
+  margin: 0;
+  padding-left: 1.4rem;
+}
+
+.page-toc .toc-depth-3 {
+  margin-left: 1rem;
+}
+
+.not-found {
+  min-height: 55vh;
+  display: grid;
+  align-content: center;
+  max-width: 640px;
+}
+
+.not-found h1 {
+  margin-bottom: 0;
+}
+
 .term-meta {
   border: 1px solid var(--line);
   background: var(--accent-soft);
@@ -380,6 +425,7 @@ main {
 }
 
 .related-list,
+.backlink-list,
 .history-list {
   padding-left: 1.2rem;
 }
