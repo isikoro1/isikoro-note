@@ -19,7 +19,7 @@ keywords:
   - API
 related:
   - title: "Index"
-    slug: "tech/database/index"
+    slug: "tech/database/db-index"
   - title: "コネクションプール"
     slug: "tech/database/connection-pool"
   - title: "Java"
