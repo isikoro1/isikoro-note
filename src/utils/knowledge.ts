@@ -57,6 +57,7 @@ const languageSlugs = new Set([
 
 const javaWebSlugs = new Set([
   'tech/java/jsp',
+  'tech/java/struts',
 ]);
 
 const librarySlugs = new Set([
