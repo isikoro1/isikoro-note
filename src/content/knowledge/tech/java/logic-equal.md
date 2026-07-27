@@ -5,7 +5,7 @@ category: "Tech"
 type: "term"
 status: "draft"
 created: "2026-07-21"
-updated: "2026-07-21"
+updated: "2026-07-28"
 importance: "medium"
 tags: ["Java", "JSP", "Struts", "View", "Legacy"]
 aliases: ["logic equal", "logic:equal", "EqualTag"]
@@ -22,11 +22,17 @@ keywords:
 history:
   - date: "2026-07-21"
     text: "初版作成"
+  - date: "2026-07-28"
+    text: "ActionFormと画面改修の調査手順へのリンクを追加"
 related:
   - title: "JSP"
     slug: "tech/java/jsp"
   - title: "Struts"
     slug: "tech/java/struts"
+  - title: "ActionForm"
+    slug: "tech/java/struts-action-form"
+  - title: "Struts 1の画面改修を調査する"
+    slug: "tech/java/struts-investigation"
 ---
 
 ## 概要
