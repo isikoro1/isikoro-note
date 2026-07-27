@@ -5,7 +5,7 @@ category: "Note"
 type: "history"
 status: "draft"
 created: "2026-07-17"
-updated: "2026-07-24"
+updated: "2026-07-28"
 tags: ["更新履歴", "履歴", "はじめに"]
 aliases: ["履歴", "主な更新履歴", "更新情報"]
 keywords:
@@ -14,6 +14,8 @@ keywords:
   - history
   - site update
 history:
+  - date: "2026-07-28"
+    text: "Struts 1の処理構造と画面改修の調査手順を追加"
   - date: "2026-07-24"
     text: "閲覧導線とコンテンツチェックの改善を反映"
   - date: "2026-07-22"
@@ -41,6 +43,13 @@ related:
 
 トップページの一時的な更新タブではなく、独立した履歴ページとして残します。
 とほほのWWW入門の更新履歴のように、日付ごとに追加・更新内容を並べる形式にします。
+
+## 2026年7月28日
+
+- [Struts](/isikoro-note/knowledge/tech/java/struts/)を、Struts 1の処理構造を辿る親ページとして再構成しました。
+- リクエスト処理、struts-config.xml、ActionForm、ActionとActionForwardのページを追加しました。
+- [Struts 1の画面改修を調査する](/isikoro-note/knowledge/tech/java/struts-investigation/)を追加し、影響調査とテスト観点を整理しました。
+- JSP、Servlet、logic:equalタグからStruts関連ページを辿れるようにしました。
 
 ## 2026年7月24日
 
