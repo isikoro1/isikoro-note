@@ -15,6 +15,8 @@ keywords:
   - site update
 history:
   - date: "2026-07-28"
+    text: "シャドーITとシャドーAIのページを追加"
+  - date: "2026-07-28"
     text: "トップページにカテゴリ別・索引タブを追加"
   - date: "2026-07-28"
     text: "Struts 1の処理構造と画面改修の調査手順を追加"
@@ -47,6 +49,9 @@ related:
 とほほのWWW入門の更新履歴のように、日付ごとに追加・更新内容を並べる形式にします。
 
 ## 2026年7月28日
+
+- [シャドーIT](/isikoro-note/knowledge/tech/security/shadow-it/)と[シャドーAI](/isikoro-note/knowledge/tech/security/shadow-ai/)を追加しました。
+- 未承認サービスが生まれる背景、データ・アカウント・監査上のリスク、利用者と組織の対策を整理しました。
 
 - トップページに「カテゴリ別」と「索引」のタブを追加しました。
 - 索引タブはMarkdownから自動生成し、新しいページも自動的に一覧へ反映されるようにしました。
