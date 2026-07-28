@@ -94,6 +94,22 @@ const groups = groupNotesByDirectory(notes as any).map((group) => ({
     childCount: countChildPages(note),
   })),
 }));
+
+const indexNotes = notes
+  .filter((note: any) => note.listed !== false && note.slug !== 'reverse/overview');
+const japaneseIndexNotes = indexNotes
+  .filter((note: any) => !/^[A-Za-z0-9]/.test(String(note.title ?? '')))
+  .sort((a: any, b: any) => String(a.title ?? '').localeCompare(String(b.title ?? ''), 'ja'));
+const alphabetIndexGroups = Object.entries(
+  indexNotes
+    .filter((note: any) => /^[A-Za-z0-9]/.test(String(note.title ?? '')))
+    .reduce((result: Record<string, any[]>, note: any) => {
+      const firstCharacter = String(note.title ?? '').charAt(0).toUpperCase();
+      const key = /[A-Z]/.test(firstCharacter) ? firstCharacter : '#';
+      (result[key] ??= []).push(note);
+      return result;
+    }, {})
+).sort(([a], [b]) => a.localeCompare(b, 'en'));
 ---
 <BaseLayout title="石ころノート">
   <section class="notice-box">
@@ -102,7 +118,16 @@ const groups = groupNotesByDirectory(notes as any).map((group) => ({
 
   <section id="results" class="search-results" aria-live="polite"></section>
 
-  <section class="index-sections">
+  <div class="tab-buttons" role="tablist" aria-label="ページ一覧の表示方法">
+    <button class="tab-button is-active" id="category-tab" type="button" role="tab" aria-selected="true" aria-controls="category-panel" data-tab="category">
+      カテゴリ別
+    </button>
+    <button class="tab-button" id="index-tab" type="button" role="tab" aria-selected="false" aria-controls="index-panel" data-tab="index">
+      索引
+    </button>
+  </div>
+
+  <section id="category-panel" class="tab-panel index-sections" role="tabpanel" aria-labelledby="category-tab" data-panel="category">
     {groups.map((group) => (
       <section class="index-section">
         <h2>{group.section}</h2>
@@ -120,11 +145,37 @@ const groups = groupNotesByDirectory(notes as any).map((group) => ({
     ))}
   </section>
 
+  <section id="index-panel" class="tab-panel index-sections" role="tabpanel" aria-labelledby="index-tab" data-panel="index" hidden>
+    {japaneseIndexNotes.length > 0 && (
+      <section class="index-section">
+        <h2>日本語</h2>
+        <ul class="link-index">
+          {japaneseIndexNotes.map((note: any) => (
+            <li><a href={url(`knowledge/${note.slug}/`)}>{note.title}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {alphabetIndexGroups.map(([initial, initialNotes]: [string, any[]]) => (
+      <section class="index-section">
+        <h2>{initial}</h2>
+        <ul class="link-index">
+          {initialNotes.map((note: any) => (
+            <li><a href={url(`knowledge/${note.slug}/`)}>{note.title}</a></li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </section>
+
   <script define:vars={{ base }}>
     const searchBase = `${base}/`.replace(/\/+/g, '/');
     const input = document.querySelector('#site-search');
     const form = input?.closest('form');
     const results = document.querySelector('#results');
+    const tabButtons = [...document.querySelectorAll('[data-tab]')];
+    const tabPanels = [...document.querySelectorAll('[data-panel]')];
     let docs = [];
 
     const normalize = (value) => String(value ?? '').toLowerCase();
@@ -230,6 +281,32 @@ const groups = groupNotesByDirectory(notes as any).map((group) => ({
       }
       window.history.replaceState({}, '', nextUrl);
     };
+
+    const selectTab = (tabName, shouldUpdateHash = true) => {
+      const nextTab = tabName === 'index' ? 'index' : 'category';
+
+      tabButtons.forEach((button) => {
+        const isActive = button.dataset.tab === nextTab;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-selected', String(isActive));
+        button.tabIndex = isActive ? 0 : -1;
+      });
+
+      tabPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.panel !== nextTab;
+      });
+
+      if (!shouldUpdateHash) return;
+      const nextUrl = new URL(window.location.href);
+      nextUrl.hash = nextTab === 'index' ? 'index' : '';
+      window.history.replaceState({}, '', nextUrl);
+    };
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => selectTab(button.dataset.tab));
+    });
+
+    selectTab(window.location.hash === '#index' ? 'index' : 'category', false);
 
     fetch(makeUrl('search.json'))
       .then((res) => res.json())
