@@ -15,6 +15,8 @@ keywords:
   - site update
 history:
   - date: "2026-07-28"
+    text: "トップページにカテゴリ別・索引タブを追加"
+  - date: "2026-07-28"
     text: "Struts 1の処理構造と画面改修の調査手順を追加"
   - date: "2026-07-24"
     text: "閲覧導線とコンテンツチェックの改善を反映"
@@ -45,6 +47,9 @@ related:
 とほほのWWW入門の更新履歴のように、日付ごとに追加・更新内容を並べる形式にします。
 
 ## 2026年7月28日
+
+- トップページに「カテゴリ別」と「索引」のタブを追加しました。
+- 索引タブはMarkdownから自動生成し、新しいページも自動的に一覧へ反映されるようにしました。
 
 - [Struts](/isikoro-note/knowledge/tech/java/struts/)を、Struts 1の処理構造を辿る親ページとして再構成しました。
 - リクエスト処理、struts-config.xml、ActionForm、ActionとActionForwardのページを追加しました。
