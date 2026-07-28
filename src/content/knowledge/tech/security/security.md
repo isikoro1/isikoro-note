@@ -5,7 +5,7 @@ category: "Tech"
 type: "security"
 status: "draft"
 created: "2026-07-19"
-updated: "2026-07-19"
+updated: "2026-07-28"
 tags: ["Security", "Web", "Authentication", "Authorization"]
 aliases: ["情報セキュリティ", "Webセキュリティ", "セキュリティ対策"]
 keywords:
@@ -21,6 +21,8 @@ history:
     text: "初版作成"
   - date: "2026-07-19"
     text: "子ページへのリンクを追加"
+  - date: "2026-07-28"
+    text: "シャドーITとシャドーAIを追加"
 related:
   - title: "Cookie"
     slug: "tech/web/cookie"
@@ -28,6 +30,10 @@ related:
     slug: "tech/web/session"
   - title: "JWT"
     slug: "tech/web/jwt"
+  - title: "シャドーIT"
+    slug: "tech/security/shadow-it"
+  - title: "シャドーAI"
+    slug: "tech/security/shadow-ai"
 ---
 
 ## 概要
@@ -60,6 +66,8 @@ Webアプリでは、ログイン、認可、入力値検証、通信、デー�
 - [SQLインジェクション](/isikoro-note/knowledge/tech/security/sql-injection/)
 - [暗号化](/isikoro-note/knowledge/tech/security/encryption/)
 - [ハッシュ化](/isikoro-note/knowledge/tech/security/hashing/)
+- [シャドーIT](/isikoro-note/knowledge/tech/security/shadow-it/)
+- [シャドーAI](/isikoro-note/knowledge/tech/security/shadow-ai/)
 
 ## よく出てくる項目
 
