@@ -5,7 +5,7 @@ category: "Tech"
 type: "term"
 status: "draft"
 created: "2026-07-19"
-updated: "2026-07-19"
+updated: "2026-07-28"
 tags: ["AI", "Artificial Intelligence", "Machine Learning"]
 aliases: ["人工知能", "Artificial Intelligence"]
 keywords:
@@ -17,11 +17,15 @@ keywords:
 history:
   - date: "2026-07-19"
     text: "初版作成"
+  - date: "2026-07-28"
+    text: "シャドーAIへのリンクを追加"
 related:
   - title: "ChatGPT"
     slug: "tech/ai/chatgpt"
   - title: "AI駆動開発"
     slug: "tech/development/ai-driven-development"
+  - title: "シャドーAI"
+    slug: "tech/security/shadow-ai"
 ---
 
 ## 概要
