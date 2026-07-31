@@ -5,7 +5,7 @@ category: "Tech"
 type: "security-term"
 status: "draft"
 created: "2026-07-19"
-updated: "2026-07-19"
+updated: "2026-07-31"
 tags: ["Security", "Hash", "Password"]
 aliases: ["Hashing", "ハッシュ", "パスワードハッシュ"]
 keywords:
@@ -15,9 +15,13 @@ keywords:
   - salt
   - digest
 history:
+  - date: "2026-07-31"
+    text: "認証機能の実装ガイドへの導線を追加"
   - date: "2026-07-19"
     text: "初版作成"
 related:
+  - title: "Webアプリの認証機能を実装する"
+    slug: "tech/security/authentication-implementation"
   - title: "セキュリティ"
     slug: "tech/security/security"
   - title: "暗号化"
@@ -51,6 +55,8 @@ related:
 - salt を使っているか
 - パスワード用のハッシュ方式を使っているか
 - ログやエラーにパスワードが出ていないか
+
+パスワードの登録とログイン処理への組み込み方は、[Webアプリの認証機能を実装する](/isikoro-note/knowledge/tech/security/authentication-implementation/)で整理しています。
 
 ## 関連する概念
 
