@@ -5,7 +5,7 @@ category: "Tech"
 type: "security"
 status: "draft"
 created: "2026-07-19"
-updated: "2026-07-28"
+updated: "2026-07-31"
 tags: ["Security", "Web", "Authentication", "Authorization"]
 aliases: ["情報セキュリティ", "Webセキュリティ", "セキュリティ対策"]
 keywords:
@@ -17,6 +17,8 @@ keywords:
   - CSRF
   - SQL injection
 history:
+  - date: "2026-07-31"
+    text: "認証機能の実装ガイドを追加"
   - date: "2026-07-19"
     text: "初版作成"
   - date: "2026-07-19"
@@ -24,6 +26,8 @@ history:
   - date: "2026-07-28"
     text: "シャドーITとシャドーAIを追加"
 related:
+  - title: "Webアプリの認証機能を実装する"
+    slug: "tech/security/authentication-implementation"
   - title: "Cookie"
     slug: "tech/web/cookie"
   - title: "Session"
@@ -60,6 +64,7 @@ Webアプリでは、ログイン、認可、入力値検証、通信、デー�
 ## 子ページ
 
 - [認証](/isikoro-note/knowledge/tech/security/authentication/)
+- [Webアプリの認証機能を実装する](/isikoro-note/knowledge/tech/security/authentication-implementation/)
 - [認可](/isikoro-note/knowledge/tech/security/authorization/)
 - [XSS](/isikoro-note/knowledge/tech/security/xss/)
 - [CSRF](/isikoro-note/knowledge/tech/security/csrf/)
