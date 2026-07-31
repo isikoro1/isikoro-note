@@ -5,7 +5,7 @@ category: "Note"
 type: "history"
 status: "draft"
 created: "2026-07-17"
-updated: "2026-07-28"
+updated: "2026-07-31"
 tags: ["更新履歴", "履歴", "はじめに"]
 aliases: ["履歴", "主な更新履歴", "更新情報"]
 keywords:
@@ -14,6 +14,8 @@ keywords:
   - history
   - site update
 history:
+  - date: "2026-07-31"
+    text: "Webアプリの認証機能実装ガイドを追加"
   - date: "2026-07-28"
     text: "シャドーITとシャドーAIのページを追加"
   - date: "2026-07-28"
@@ -47,6 +49,12 @@ related:
 
 トップページの一時的な更新タブではなく、独立した履歴ページとして残します。
 とほほのWWW入門の更新履歴のように、日付ごとに追加・更新内容を並べる形式にします。
+
+## 2026年7月31日
+
+- [Webアプリの認証機能を実装する](/isikoro-note/knowledge/tech/security/authentication-implementation/)を追加しました。
+- アカウント登録、ログイン、セッション、ログアウト、パスワード再設定を一つの流れとして整理しました。
+- ログイン試行の制限、Cookie属性、CSRF対策、認可、ログ、テスト観点もまとめました。
 
 ## 2026年7月28日
 
