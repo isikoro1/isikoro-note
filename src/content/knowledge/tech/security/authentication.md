@@ -5,7 +5,7 @@ category: "Tech"
 type: "security-term"
 status: "draft"
 created: "2026-07-19"
-updated: "2026-07-19"
+updated: "2026-07-31"
 tags: ["Security", "Authentication", "Login"]
 aliases: ["Authentication", "ログイン", "本人確認"]
 keywords:
@@ -15,9 +15,13 @@ keywords:
   - MFA
   - session
 history:
+  - date: "2026-07-31"
+    text: "認証機能の実装ガイドへの導線を追加"
   - date: "2026-07-19"
     text: "初版作成"
 related:
+  - title: "Webアプリの認証機能を実装する"
+    slug: "tech/security/authentication-implementation"
   - title: "セキュリティ"
     slug: "tech/security/security"
   - title: "認可"
@@ -52,6 +56,10 @@ Webアプリでは、IDとパスワードでログインする処理、メール
 - セッションやトークンを安全に扱っているか
 - 二要素認証が必要な場面か
 - 認証後の画面で認可チェックを忘れていないか
+
+## 実装ガイド
+
+登録、ログイン、セッション、ログアウト、パスワード再設定をつなげた実装手順は、[Webアプリの認証機能を実装する](/isikoro-note/knowledge/tech/security/authentication-implementation/)で整理しています。
 
 ## 関連する概念
 
