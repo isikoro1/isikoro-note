@@ -5,7 +5,7 @@ category: "Tech"
 type: "security-term"
 status: "draft"
 created: "2026-07-19"
-updated: "2026-07-19"
+updated: "2026-07-31"
 tags: ["Security", "CSRF", "Web"]
 aliases: ["クロスサイトリクエストフォージェリ", "Cross Site Request Forgery"]
 keywords:
@@ -15,9 +15,13 @@ keywords:
   - Cookie
   - request forgery
 history:
+  - date: "2026-07-31"
+    text: "認証機能の実装ガイドへの導線を追加"
   - date: "2026-07-19"
     text: "初版作成"
 related:
+  - title: "Webアプリの認証機能を実装する"
+    slug: "tech/security/authentication-implementation"
   - title: "セキュリティ"
     slug: "tech/security/security"
   - title: "Cookie"
@@ -49,6 +53,8 @@ CSRF は、ログイン済み利用者の権限を利用して、本人が意図
 状態を変更するリクエストには、推測できないトークンを含めて検証します。
 
 また、Cookie の SameSite 属性やフレームワークの標準機能を利用し、独自実装を増やしすぎないことが重要です。
+
+ログイン後のCookieと状態変更処理への組み込み方は、[Webアプリの認証機能を実装する](/isikoro-note/knowledge/tech/security/authentication-implementation/)で整理しています。
 
 ## 関連する概念
 
