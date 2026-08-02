@@ -5,7 +5,7 @@ category: "Note"
 type: "history"
 status: "draft"
 created: "2026-07-17"
-updated: "2026-07-31"
+updated: "2026-08-03"
 tags: ["更新履歴", "履歴", "はじめに"]
 aliases: ["履歴", "主な更新履歴", "更新情報"]
 keywords:
@@ -14,6 +14,8 @@ keywords:
   - history
   - site update
 history:
+  - date: "2026-08-03"
+    text: "Haskellの親ページを再構成し、5つの深掘りページを追加"
   - date: "2026-07-31"
     text: "Webアプリの認証機能実装ガイドを追加"
   - date: "2026-07-28"
@@ -49,6 +51,12 @@ related:
 
 トップページの一時的な更新タブではなく、独立した履歴ページとして残します。
 とほほのWWW入門の更新履歴のように、日付ごとに追加・更新内容を並べる形式にします。
+
+## 2026年8月3日
+
+- [Haskell](/isikoro-note/knowledge/tech/haskell/haskell/)を、特徴と学習順序を辿れる親ページとして再構成しました。
+- 関数と型、代数的データ型、純粋関数とIO、遅延評価、Functor・Applicative・Monadのページを追加しました。
+- Haskell固有の機能だけでなく、状態設計や副作用の分離を他言語へ応用する観点も整理しました。
 
 ## 2026年7月31日
 
